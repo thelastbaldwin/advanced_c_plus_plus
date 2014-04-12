@@ -11,6 +11,7 @@
 
 #include "Point.h"
 #include <vector>
+#include <algorithm>
 
 typedef std::vector<VG::Point> Points;
 
@@ -39,6 +40,7 @@ namespace VG{
 		
 	private:
 		Points myPath;
+		bool closed;
 	};
 }
 

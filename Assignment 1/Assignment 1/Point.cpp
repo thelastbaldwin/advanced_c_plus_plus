@@ -19,6 +19,17 @@ VG::Point& VG::Point::operator=(const Point& rhs){
 	return *this;
 };
 
+bool VG::Point::operator==(const Point& rhs){
+	if(getX() == rhs.getX() && getY() == rhs.getY()){
+		return true;
+	}
+	return false;
+};
+
+bool VG::Point::operator!=(const Point& rhs){
+	return !operator==(rhs);
+};
+
 int VG::Point::getX() const{ return x;}
 int VG::Point::getY() const{ return y;}
 

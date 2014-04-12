@@ -21,24 +21,33 @@ TEST(eatNothing, Parse){
 
 TEST(trimFront, Parse){
 	std::string myName("ABCDEFSteve");
-	std::string justName = Parse::trim(myName, "ABCDEF");
-	CHECK_EQUAL("Steve", justName);
+	Parse::trim(myName, "ABCDEF");
+	CHECK_EQUAL("Steve", myName);
 }
 
 TEST(trimBack, Parse){
 	std::string myName("SteveABCDEF");
-	std::string justName = Parse::trim(myName, "ABCDEF");
-	CHECK_EQUAL("Steve", justName);
+	Parse::trim(myName, "ABCDEF");
+	CHECK_EQUAL("Steve", myName);
 }
 
 TEST(trimFrontBack, Parse){
 	std::string myName("ABCDEFSteveABCDEF");
-	std::string justName = Parse::trim(myName, "ABCDEF");
-	CHECK_EQUAL("Steve", justName);
+	Parse::trim(myName, "ABCDEF");
+	CHECK_EQUAL("Steve", myName);
 }
 
 TEST(trimNothing, Parse){
 	std::string myName("Steve");
-	std::string justName = Parse::trim(myName, "ABCDEF");
-	CHECK_EQUAL("Steve", justName);
+	Parse::trim(myName, "ABCDEF");
+	CHECK_EQUAL("Steve", myName);
+}
+
+TEST(trimEverything, Parse)
+{
+    std::string actual("Hello 1234");
+    std::string trimmables("Hello 0123456789");
+    Parse::trim(actual, trimmables);
+    std::string expected;
+    CHECK_EQUAL(expected, actual);
 }

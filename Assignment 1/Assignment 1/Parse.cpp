@@ -8,15 +8,13 @@
 
 #include "Parse.h"
 
-std::stringstream& Parse::eat(std::stringstream& ss, std::string edibles){
-
+void Parse::eat(std::stringstream& ss, std::string edibles){
 	while(edibles.find(ss.peek()) != std::string::npos){
 		ss.ignore();
 	}
-	return ss;
 };
 
-std::string Parse::trim(const std::string &input, std::string trimables){
+void Parse::trim(std::string& input, std::string trimables){
 	size_t frontPos = 0;
 	size_t backPos = input.length()-1;
 	
@@ -32,6 +30,6 @@ std::string Parse::trim(const std::string &input, std::string trimables){
 		backPos = stringIndex;
 	}
 	
-	return input.substr(frontPos, backPos - frontPos + 1);
+	input = input.substr(frontPos, backPos - frontPos + 1);
 };
 

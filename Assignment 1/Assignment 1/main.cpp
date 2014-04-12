@@ -9,6 +9,9 @@
 #include "TestHarness.h"
 #include <iostream>
 
+//stringification
+#define STR(s) #s
+
 int main(int argc, const char * argv[])
 {
 

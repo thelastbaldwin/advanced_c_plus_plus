@@ -16,6 +16,7 @@
 		F465F82D18F6F68A003194F5 /* Parse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F465F82B18F6F68A003194F5 /* Parse.cpp */; };
 		F465F82F18F77EB3003194F5 /* streamTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F465F82E18F77EB3003194F5 /* streamTest.cpp */; };
 		F465F83118F787F1003194F5 /* parseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F465F83018F787F1003194F5 /* parseTest.cpp */; };
+		F465F83418F9CCB5003194F5 /* XMLStreamer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F465F83218F9CCB4003194F5 /* XMLStreamer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,8 @@
 		F465F82C18F6F68A003194F5 /* Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parse.h; sourceTree = "<group>"; };
 		F465F82E18F77EB3003194F5 /* streamTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = streamTest.cpp; sourceTree = "<group>"; };
 		F465F83018F787F1003194F5 /* parseTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parseTest.cpp; sourceTree = "<group>"; };
+		F465F83218F9CCB4003194F5 /* XMLStreamer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLStreamer.cpp; sourceTree = "<group>"; };
+		F465F83318F9CCB5003194F5 /* XMLStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLStreamer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 				F4646AA318F4CC79004C7D63 /* vectorGraphicTest.cpp */,
 				F465F82E18F77EB3003194F5 /* streamTest.cpp */,
 				F465F83018F787F1003194F5 /* parseTest.cpp */,
+				F465F83218F9CCB4003194F5 /* XMLStreamer.cpp */,
+				F465F83318F9CCB5003194F5 /* XMLStreamer.h */,
 				F4646AA818F4D294004C7D63 /* VectorGraphic.cpp */,
 				F4646AA918F4D294004C7D63 /* VectorGraphic.h */,
 				F4646A9A18F4CA43004C7D63 /* Assignment_1.1 */,
@@ -152,6 +157,7 @@
 				F465F82D18F6F68A003194F5 /* Parse.cpp in Sources */,
 				F465F82F18F77EB3003194F5 /* streamTest.cpp in Sources */,
 				F465F83118F787F1003194F5 /* parseTest.cpp in Sources */,
+				F465F83418F9CCB5003194F5 /* XMLStreamer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

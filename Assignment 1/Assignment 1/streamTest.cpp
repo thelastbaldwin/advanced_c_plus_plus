@@ -1,10 +1,10 @@
 #include "TestHarness.h"
-#include <string>
-#include <sstream>
+#include "XMLStreamer.h"
 
+#define STR(s) #s
 
-// Tests for methods which can drive trim and eat
-// methods in Parse namespace
+// Scratch tests 
+
 TEST(streamPeek, stringStream){
 	int streamCharCount = 0;
 	std::stringstream myStream("Steve");
@@ -21,12 +21,66 @@ TEST(streamPeek, stringStream){
 	CHECK_EQUAL(streamCharCount, 5);
 }
 
-TEST(erase, string){
-	std::string myName("Steve");
-	std::string::const_iterator beginTrim;
-	std::string::const_iterator endTrim;
+TEST(getLineTest, stringStream){
+	std::stringstream ss(STR(<VectorGraphic closed="true">    <Point x="0" y="0"/>));
+	std::string token;
 	
-	for(auto iter = myName.begin(); iter != myName.end(); ++iter){
-		
-	}
+	std::getline(ss, token, '>');
+	CHECK_EQUAL(STR(<VectorGraphic closed="true"), token);
+	std::getline(ss, token, '>');
+	Parse::trim(token, " <>");
+	CHECK_EQUAL("Point x=\"0\" y=\"0\"/", token);
+}
+
+TEST(getTagContentsTest, stringStream){
+	using namespace std;
+	
+	stringstream ss(STR(
+		<VectorGraphic closed="true">
+		<Point x="0" y="0"/>
+		<Point x="10" y="0">
+		</Point>
+		<Point x="10" y="10"/>
+		<Point x="0" y="10"/>
+		</VectorGraphic>
+	));
+	
+	std::string token;
+	std::getline(ss, token, '>');
+	Parse::trim(token, " \t\n<>");
+	CHECK_EQUAL(STR(VectorGraphic closed="true"), token);
+	std::getline(ss, token, '>');
+	Parse::trim(token, " \t\n<>");
+	CHECK_EQUAL(STR(Point x="0" y="0"/), token);
+}
+
+TEST(getNextToken, stringStream){
+	using namespace std;
+	
+	stringstream ss(STR(
+		<VectorGraphic closed="true">
+		<Point x="0" y="0"/>
+		<Point x="10" y="0">
+		</Point>
+		<Point x="10" y="10"/>
+		<Point x="0" y="10"/>
+		</VectorGraphic>
+	));
+	
+	std::string token = VG::XMLStreamer::getNextToken(ss);
+	CHECK_EQUAL(STR(VectorGraphic closed="true"), token);
+	token = VG::XMLStreamer::getNextToken(ss);
+	CHECK_EQUAL(STR(Point x="0" y="0"/), token);
+	token = VG::XMLStreamer::getNextToken(ss);
+	CHECK_EQUAL(STR(Point x="10" y="0"), token);
+	token = VG::XMLStreamer::getNextToken(ss);
+	CHECK_EQUAL(STR(/Point), token);
+	token = VG::XMLStreamer::getNextToken(ss);
+	CHECK_EQUAL(STR(Point x="10" y="10"/), token);
+	token = VG::XMLStreamer::getNextToken(ss);
+	CHECK_EQUAL(STR(Point x="0" y="10"/), token);
+	token = VG::XMLStreamer::getNextToken(ss);
+	CHECK_EQUAL(STR(/VectorGraphic), token);
+	token = VG::XMLStreamer::getNextToken(ss);
+	CHECK_EQUAL("", token); 
 }

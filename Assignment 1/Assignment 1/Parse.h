@@ -14,8 +14,8 @@
 #include <sstream>
 
 namespace Parse{
-	std::stringstream& eat(std::stringstream& ss, std::string edibles);
-	std::string trim(const std::string& input, std::string trimables);
+	void eat(std::stringstream& ss, std::string edibles);
+	void trim(std::string& input, std::string trimables);
 }
 
 #endif /* defined(__Assignment_1__Parse__) */
