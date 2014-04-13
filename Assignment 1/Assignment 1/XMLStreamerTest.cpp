@@ -86,8 +86,46 @@ TEST(getNameTest, XMLStreamer){
 		XMLStreamer::getTagName(token);
 	}
 	catch(const std::invalid_argument e){
-		//cout << "exception encountered successfully" << endl;
+		//cout << e.what() << endl;
 		CHECK(true);
 	}
+}
+
+TEST(getAttributesTest, regex){
+	using namespace std;
+	using namespace VG;
 	
+	string tag = "Point favoritemovie=\"Dances with Wolves\" pocahontas=\"native_american\" x=\"0\" y=\"255\"";
+	map<string, string> attributes = XMLStreamer::getAttributes(tag);
+	
+	auto iter = attributes.begin();
+	CHECK_EQUAL(iter->second, "Dances with Wolves");
+	++iter;
+	CHECK_EQUAL(iter->second, "native_american");
+	++iter;
+	CHECK_EQUAL(iter->second, "0");
+	++iter;
+	CHECK_EQUAL(iter->second, "255");
+}
+
+TEST(noAttributesTest, regex){
+	using namespace std;
+	using namespace VG;
+	
+	string tag = "Point /";
+	map<string, string> attributes = XMLStreamer::getAttributes(tag);
+	
+	CHECK(attributes.empty());
+	
+	tag = "/Point";
+	attributes = XMLStreamer::getAttributes(tag);
+	
+	CHECK(attributes.empty());
+	
+	// wouldn't really be a valid tag in this system, because
+	// we're not accounting for value between tags. 
+	tag = "Point";
+	attributes = XMLStreamer::getAttributes(tag);
+	
+	CHECK(attributes.empty());
 }

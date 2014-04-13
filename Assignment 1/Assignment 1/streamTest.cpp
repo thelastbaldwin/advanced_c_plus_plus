@@ -63,3 +63,20 @@ TEST(getNameTest, regex){
 	CHECK_EQUAL(firstWordMatch.str(), "VectorGraphic");
 }
 
+TEST(hasAttributesTest, regex){
+	using namespace std;
+	//if the tag has attributes, how to get all matching sets?
+	// a single regex can't know how many groups to capture
+	regex attributeRegex("(([a-zA-Z09-_]+)=\"([a-zA-Z0-9_\\s]+)\")");	
+	smatch attributeMatch;
+
+	bool found = regex_search(std::string("Point favoritemovie=\"Dances with Wolves\" pocahontas=\"native_american\" x=\"0\" y=\"255\""),
+							  attributeMatch,
+							  attributeRegex);
+	if(!found){
+		CHECK_FAIL("Unable to find attributes");
+	}
+}
+
+
+
