@@ -1,5 +1,6 @@
 #include "TestHarness.h"
 #include "XMLStreamer.h"
+#include "Point.h"
 
 #define STR(s) #s
 

@@ -21,7 +21,7 @@ void VG::VectorGraphic::removePoint(const Point &p){
 }
 
 void VG::VectorGraphic::erasePoint(int index){
-	myPath.erase(std::remove(myPath.begin(), myPath.end(), index));
+	//std::remove(myPath.begin(), myPath.end(), index);
 }
 
 void VG::VectorGraphic::openShape(){

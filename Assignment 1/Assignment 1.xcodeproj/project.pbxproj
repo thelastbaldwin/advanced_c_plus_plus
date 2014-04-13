@@ -17,6 +17,8 @@
 		F465F82F18F77EB3003194F5 /* streamTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F465F82E18F77EB3003194F5 /* streamTest.cpp */; };
 		F465F83118F787F1003194F5 /* parseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F465F83018F787F1003194F5 /* parseTest.cpp */; };
 		F465F83418F9CCB5003194F5 /* XMLStreamer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F465F83218F9CCB4003194F5 /* XMLStreamer.cpp */; };
+		F465F83718F9F36F003194F5 /* XMLNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F465F83518F9F36E003194F5 /* XMLNode.cpp */; };
+		F465F83918FA36FB003194F5 /* XMLStreamerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F465F83818FA36FA003194F5 /* XMLStreamerTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +50,9 @@
 		F465F83018F787F1003194F5 /* parseTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parseTest.cpp; sourceTree = "<group>"; };
 		F465F83218F9CCB4003194F5 /* XMLStreamer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLStreamer.cpp; sourceTree = "<group>"; };
 		F465F83318F9CCB5003194F5 /* XMLStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLStreamer.h; sourceTree = "<group>"; };
+		F465F83518F9F36E003194F5 /* XMLNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLNode.cpp; sourceTree = "<group>"; };
+		F465F83618F9F36F003194F5 /* XMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLNode.h; sourceTree = "<group>"; };
+		F465F83818FA36FA003194F5 /* XMLStreamerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLStreamerTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +94,12 @@
 				F465F82C18F6F68A003194F5 /* Parse.h */,
 				F4646AA318F4CC79004C7D63 /* vectorGraphicTest.cpp */,
 				F465F82E18F77EB3003194F5 /* streamTest.cpp */,
+				F465F83818FA36FA003194F5 /* XMLStreamerTest.cpp */,
 				F465F83018F787F1003194F5 /* parseTest.cpp */,
 				F465F83218F9CCB4003194F5 /* XMLStreamer.cpp */,
 				F465F83318F9CCB5003194F5 /* XMLStreamer.h */,
+				F465F83518F9F36E003194F5 /* XMLNode.cpp */,
+				F465F83618F9F36F003194F5 /* XMLNode.h */,
 				F4646AA818F4D294004C7D63 /* VectorGraphic.cpp */,
 				F4646AA918F4D294004C7D63 /* VectorGraphic.h */,
 				F4646A9A18F4CA43004C7D63 /* Assignment_1.1 */,
@@ -158,6 +166,8 @@
 				F465F82F18F77EB3003194F5 /* streamTest.cpp in Sources */,
 				F465F83118F787F1003194F5 /* parseTest.cpp in Sources */,
 				F465F83418F9CCB5003194F5 /* XMLStreamer.cpp in Sources */,
+				F465F83718F9F36F003194F5 /* XMLNode.cpp in Sources */,
+				F465F83918FA36FB003194F5 /* XMLStreamerTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
