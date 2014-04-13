@@ -18,6 +18,18 @@ std::string VG::XMLStreamer::getNextToken(std::stringstream& xmlStream){
 	return token;
 }
 
+std::string VG::XMLStreamer::getTagName(const std::string &tag) {
+	std::regex firstWordRegex("\\w+");
+	std::smatch firstWordMatch;
+	//returns bool
+	bool found = std::regex_search(tag, firstWordMatch, firstWordRegex);
+	if (found){
+		return firstWordMatch.str();
+	}
+	//throw exception
+	throw std::invalid_argument("Unable to find first word.");
+}
+
 
 
 bool VG::XMLStreamer::isClosingTag(const std::string &tag){

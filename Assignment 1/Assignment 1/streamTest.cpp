@@ -55,33 +55,11 @@ TEST(getTagContentsTest, stringStream){
 	CHECK_EQUAL(STR(Point x="0" y="0"/), token);
 }
 
-TEST(getNextToken, stringStream){
-	using namespace std;
-	
-	stringstream ss(STR(
-		<VectorGraphic closed="true">
-		<Point x="0" y="0"/>
-		<Point x="10" y="0">
-		</Point>
-		<Point x="10" y="10"/>
-		<Point x="0" y="10"/>
-		</VectorGraphic>
-	));
-	
-	std::string token = VG::XMLStreamer::getNextToken(ss);
-	CHECK_EQUAL(STR(VectorGraphic closed="true"), token);
-	token = VG::XMLStreamer::getNextToken(ss);
-	CHECK_EQUAL(STR(Point x="0" y="0"/), token);
-	token = VG::XMLStreamer::getNextToken(ss);
-	CHECK_EQUAL(STR(Point x="10" y="0"), token);
-	token = VG::XMLStreamer::getNextToken(ss);
-	CHECK_EQUAL(STR(/Point), token);
-	token = VG::XMLStreamer::getNextToken(ss);
-	CHECK_EQUAL(STR(Point x="10" y="10"/), token);
-	token = VG::XMLStreamer::getNextToken(ss);
-	CHECK_EQUAL(STR(Point x="0" y="10"/), token);
-	token = VG::XMLStreamer::getNextToken(ss);
-	CHECK_EQUAL(STR(/VectorGraphic), token);
-	token = VG::XMLStreamer::getNextToken(ss);
-	CHECK_EQUAL("", token); 
+TEST(getNameTest, regex){
+	std::regex firstWordRegex("\\w+");
+	std::smatch firstWordMatch;
+	//returns bool
+	std::regex_search(std::string("<VectorGraphic closed=\"true\">"), firstWordMatch, firstWordRegex);
+	CHECK_EQUAL(firstWordMatch.str(), "VectorGraphic");
 }
+

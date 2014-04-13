@@ -14,6 +14,7 @@
 
 #include "Parse.h"
 #include "XMLNode.h"
+#include <exception>
 
 namespace VG{
 	class XMLStreamer{
