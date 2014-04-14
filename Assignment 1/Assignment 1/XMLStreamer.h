@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <regex>
-
+#include <stack>
 #include "Parse.h"
 #include "XMLNode.h"
 #include <exception>
@@ -26,7 +26,7 @@ namespace VG{
 		static bool isComment(const std::string& tag); //need for assignment 2
 		static bool isClosingTag(const std::string& tag);
 		static bool isSelfClosingTag(const std::string& tag);
-		static XMLNode parseXml(std::stringstream& xmlStream); //returns parent node
+		static std::shared_ptr<XMLNode> parseXml(std::stringstream& xmlStream); //returns parent node
 	};
 }
 

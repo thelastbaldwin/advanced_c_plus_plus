@@ -27,7 +27,7 @@ std::string VG::XMLStreamer::getTagName(const std::string &tag) {
 		return firstWordMatch.str();
 	}
 	//throw exception
-	throw std::invalid_argument("Unable to find first word.");
+	throw std::invalid_argument("Tag does not contain a name.");
 }
 
 std::map<std::string, std::string> VG::XMLStreamer::getAttributes(std::string tag){
@@ -74,4 +74,74 @@ bool VG::XMLStreamer::isSelfClosingTag(const std::string &tag){
 		return tag.back() == '/';
 	}
 	return false;
+}
+
+std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::stringstream &xmlStream){
+	std::stack<std::shared_ptr<XMLNode>> openTags;
+	std::shared_ptr<XMLNode> topLevelElement;
+	std::shared_ptr<XMLNode> currentElement;
+	std::string currentElementString = XMLStreamer::getNextToken(xmlStream);
+	std::string currentTagName;
+	std::map<std::string, std::string> currentTagAttributes;
+	
+	do{		
+		if (!isValid(currentElementString)) {
+			throw std::invalid_argument("Invalid tag encountered");
+		}
+		
+		bool isClosingTag = XMLStreamer::isClosingTag(currentElementString);
+		bool isSelfClosingTag = XMLStreamer::isSelfClosingTag(currentElementString);
+		bool isOpenTag = !isClosingTag && !isSelfClosingTag;
+		
+		if (isComment(currentElementString)) {
+			// cannot persist comments between saves
+			currentElementString = XMLStreamer::getNextToken(xmlStream);
+			break;
+		}
+		if (isOpenTag){
+			currentTagName = getTagName(currentElementString);
+			currentTagAttributes = getAttributes(currentElementString);
+			if (openTags.empty()){
+				//this is the top level element condition
+				topLevelElement = std::make_shared<XMLNode>(XMLNode(currentTagName, currentTagAttributes));
+				openTags.push(topLevelElement);
+			}else{
+				currentElement = std::make_shared<XMLNode>(XMLNode(currentTagName, currentTagAttributes, openTags.top()));
+				openTags.push(currentElement);
+			}
+		
+		}
+		else if (isClosingTag) {
+			if (openTags.empty()) {
+				throw std::invalid_argument("Mismatched tags in source");
+			}
+			else if (getTagName(currentElementString) == openTags.top()->getName()){
+				openTags.pop();
+				
+			}else{
+				throw std::invalid_argument("Mismatched tags in source");
+			}
+		
+		}
+		else if (isSelfClosingTag) {
+			currentTagName = getTagName(currentElementString);
+			currentTagAttributes = getAttributes(currentElementString);
+			
+			if (openTags.empty()) {
+				//edge case of self closing tag without parent. Assume top level element
+				topLevelElement = std::make_shared<XMLNode>(XMLNode(currentTagName, currentTagAttributes));
+			}else{
+				currentElement = std::make_shared<XMLNode>(XMLNode(currentTagName, currentTagAttributes, openTags.top()));
+			}
+		
+		}
+		currentElementString = XMLStreamer::getNextToken(xmlStream);		
+	}
+	while (currentElementString != "");
+	
+	if (!openTags.empty()) {
+		throw std::invalid_argument("Mismatched tags in source");
+	}
+	
+	return topLevelElement;
 }

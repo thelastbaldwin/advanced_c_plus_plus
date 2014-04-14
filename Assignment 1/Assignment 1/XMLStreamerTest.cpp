@@ -129,3 +129,43 @@ TEST(noAttributesTest, regex){
 	
 	CHECK(attributes.empty());
 }
+
+TEST(pareseXMLTest, XMLStreamer){
+	using namespace std;
+	using namespace VG;
+	
+	stringstream ss(STR(
+		<VectorGraphic closed="true">
+		<Point x="0" y="0"/>
+		<Point x="10" y="0">
+		</Point>
+		<Point x="10" y="10"/>
+		<Point x="0" y="10"/>
+		</VectorGraphic>
+		));
+	
+	shared_ptr<XMLNode> topLevelElement(XMLStreamer::parseXml(ss));
+	CHECK_EQUAL("VectorGraphic", topLevelElement->getName());
+	CHECK_EQUAL("true", topLevelElement->getAttribute("closed"));
+	CHECK(topLevelElement->hasChildren());
+	vector<XMLNode> children = topLevelElement->getAllChildren();
+	CHECK_EQUAL(4, children.size());
+	
+	XMLNode Point1 = children[0];
+	CHECK_EQUAL("Point", Point1.getName());
+	CHECK_EQUAL("0", Point1.getAttribute("x"));
+	CHECK_EQUAL("0", Point1.getAttribute("y"));
+	XMLNode Point2 = children[1];
+	CHECK_EQUAL("Point", Point2.getName());
+	CHECK_EQUAL("10", Point2.getAttribute("x"));
+	CHECK_EQUAL("0", Point2.getAttribute("y"));
+	XMLNode Point3 = children[2];
+	CHECK_EQUAL("Point", Point3.getName());
+	CHECK_EQUAL("10", Point3.getAttribute("x"));
+	CHECK_EQUAL("10", Point3.getAttribute("y"));
+	XMLNode Point4 = children[3];
+	CHECK_EQUAL("Point", Point4.getName());
+	CHECK_EQUAL("0", Point4.getAttribute("x"));
+	CHECK_EQUAL("10", Point4.getAttribute("y"));
+	
+}

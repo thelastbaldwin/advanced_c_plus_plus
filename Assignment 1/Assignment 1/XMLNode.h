@@ -16,21 +16,25 @@
 #include <memory>
 
 namespace VG{
+	// Always initialize using new and a shared pointer
 	class XMLNode{
 	public:
-		XMLNode(std::string _name, XMLNode* _parent = NULL);
-		XMLNode(std::string _name, std::map<std::string, std::string> _attributes, XMLNode* _parent = NULL);
+		XMLNode(std::string _name, std::shared_ptr<VG::XMLNode> _parent = NULL);
+		XMLNode(std::string _name, std::map<std::string, std::string> _attributes, std::shared_ptr<XMLNode> = NULL);
 		bool hasChildren();
-		void setAttributes(std::map<std::string, std::string> attr);
-		std::string getName();
-		std::string getAttribute(std::string key);
-		void close();
+		void setAttributes(std::map<std::string, std::string>& attr);
+		std::string getName() const;
+		std::string getAttribute(std::string key) const;
+		std::vector<XMLNode> getAllChildren() const;
+		std::shared_ptr<XMLNode> getParent() const;
+		bool operator==(const XMLNode& rhs);
+		bool operator!=(const XMLNode& rhs);
 	private:
 		std::string name;
 		std::map<std::string, std::string> attributes;
 		std::vector<XMLNode> children;
 		std::shared_ptr<XMLNode> parent;
-		bool isClosed;
+		void addChild(XMLNode& child);
 	};
 }
 

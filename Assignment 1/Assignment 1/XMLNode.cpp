@@ -8,29 +8,50 @@
 
 #include "XMLNode.h"
 
-VG::XMLNode::XMLNode(std::string _name, XMLNode* _parent):
+VG::XMLNode::XMLNode(std::string _name, std::shared_ptr<XMLNode> _parent):
 	name(_name),
-	isClosed(false),
-	parent(_parent){};
+	parent(_parent){
+		if( _parent != NULL){
+			parent->addChild(*this);
+		}
+	};
 
-VG::XMLNode::XMLNode(std::string _name, std::map<std::string, std::string> _attributes, XMLNode* _parent):
+VG::XMLNode::XMLNode(std::string _name, std::map<std::string, std::string> _attributes, std::shared_ptr<XMLNode> _parent):
 	name(_name),
-	isClosed(false),
 	attributes(_attributes),
-	parent(_parent){};
+	parent(_parent){
+		if( _parent != NULL){
+			parent->addChild(*this);
+		}
+	};
 
 bool VG::XMLNode::hasChildren(){
 	return (children.size() > 0) ? true : false;
 }
 
-std::string VG::XMLNode::getName(){
+std::string VG::XMLNode::getName() const{
 	return name;
 }
 
-std::string VG::XMLNode::getAttribute(std::string key){
+void VG::XMLNode::addChild(VG::XMLNode& child) {
+	children.push_back(child);
+}
+
+std::string VG::XMLNode::getAttribute(std::string key) const{
 	return attributes.find(key)->second;
 }
 
-void VG::XMLNode::close(){
-	isClosed = true;
+std::vector<VG::XMLNode> VG::XMLNode::getAllChildren() const{
+	return children;
 }
+
+std::shared_ptr<VG::XMLNode> VG::XMLNode::getParent() const{
+	return parent;
+}
+
+bool VG::XMLNode::operator==(const XMLNode& rhs){
+	return (getName() == rhs.getName());
+}
+bool VG::XMLNode::operator!=(const XMLNode& rhs){
+	return !operator==(rhs);
+};
