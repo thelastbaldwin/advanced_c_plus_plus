@@ -15,7 +15,6 @@ TEST(nodeInitTest, XMLNode){
 		keyValue("closed", "true")
 	};
 	
-	//always make xml nodes on the stack and store in shared pointer?
 	shared_ptr<XMLNode> parentNode(new XMLNode("VectorGraphic", parentDummyValues));
 	shared_ptr<XMLNode> child1(new XMLNode("Point", dummyValues, parentNode));
 	shared_ptr<XMLNode> child2(new XMLNode("Point", dummyValues, parentNode));
@@ -58,4 +57,5 @@ TEST(nodePtrReassignment, XMLNode){
 	CHECK_EQUAL("VectorGraphic", villageBicycle->getName());
 	CHECK_EQUAL("99", villageBicycle->getAttribute("y"));
 	CHECK_EQUAL("255", villageBicycle->getAttribute("x"));
+	CHECK_EQUAL("", villageBicycle->getAttribute("bad key"));
 }

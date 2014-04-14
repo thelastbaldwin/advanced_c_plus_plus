@@ -21,7 +21,7 @@ void VG::VectorGraphic::removePoint(const Point &p){
 }
 
 void VG::VectorGraphic::erasePoint(int index){
-	//std::remove(myPath.begin(), myPath.end(), index);
+	myPath.erase(myPath.begin() + index);
 }
 
 void VG::VectorGraphic::openShape(){
@@ -45,11 +45,41 @@ bool VG::VectorGraphic::isClosed() const{
 }
 
 int VG::VectorGraphic::getWidth() const{
-	return 0;
+	int width = 0;
+	
+	if(myPath.size() > 1){
+		auto max = std::max_element(myPath.begin(), myPath.end(),
+			[](const VG::Point& lhs, const VG::Point& rhs){
+				return lhs.getX() < rhs.getX();
+			});
+		auto min = std::max_element(myPath.begin(), myPath.end(),
+			[](const VG::Point& lhs, const VG::Point& rhs){
+				return lhs.getX() > rhs.getX();
+			});
+
+		width = max->getX() - min->getX();
+	}
+	
+	return width;
 }
 
 int VG::VectorGraphic::getHeight() const{
-	return 0;
+	int height = 0;
+	
+	if(myPath.size() > 1){
+		auto max = std::max_element(myPath.begin(), myPath.end(),
+			[](const VG::Point& lhs, const VG::Point& rhs){
+				return lhs.getY() < rhs.getY();
+			});
+		auto min = std::max_element(myPath.begin(), myPath.end(),
+			[](const VG::Point& lhs, const VG::Point& rhs){
+				return lhs.getY() > rhs.getY();
+			});
+		
+		height = max->getY() - min->getY();
+	}
+	
+	return height;
 }
 
 int VG::VectorGraphic::getPointCount() const{
@@ -58,4 +88,48 @@ int VG::VectorGraphic::getPointCount() const{
 
 VG::Point VG::VectorGraphic::getPoint(int index) const{
 	return myPath[index];
+}
+
+VG::VectorGraphic VG::VectorGraphic::fromXML(std::shared_ptr<XMLNode> topLevelElement){
+	VectorGraphic vg;
+	std::stringstream ss;
+	std::string name;
+	bool closed;	
+	
+	ss << topLevelElement->getName();
+	ss >> name;
+	ss.clear();
+	ss.str("");
+	
+	if(name != "VectorGraphic"){
+		std::invalid_argument("Top level element is not VectorGraphic");
+	}
+	
+	ss << topLevelElement->getAttribute("closed");
+	ss >> closed;
+	if (closed) {
+		vg.closeShape();
+	}
+	ss.clear();
+	ss.str("");
+	
+	auto children = topLevelElement->getAllChildren();
+	for(auto iter = children.begin(); iter != children.end(); ++iter){
+		//running into error converting string to int!
+		int x, y;
+		std::string xString = iter->getAttribute("x");
+		
+		ss.clear();
+		ss.str("");
+		ss << xString;
+		ss >> x;
+		
+		ss.clear();
+		ss.str("");
+		ss << iter->getAttribute("y");
+		ss >> y;
+		vg.addPoint(Point(x, y));
+	}
+	
+	return vg;
 }

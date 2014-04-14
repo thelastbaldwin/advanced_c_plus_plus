@@ -167,5 +167,4 @@ TEST(pareseXMLTest, XMLStreamer){
 	CHECK_EQUAL("Point", Point4.getName());
 	CHECK_EQUAL("0", Point4.getAttribute("x"));
 	CHECK_EQUAL("10", Point4.getAttribute("y"));
-	
 }

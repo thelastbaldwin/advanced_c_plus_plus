@@ -10,6 +10,7 @@
 #define __Assignment_1__VectorGraphic__
 
 #include "Point.h"
+#include "XMLStreamer.h"
 #include <vector>
 #include <algorithm>
 
@@ -18,10 +19,7 @@ typedef std::vector<VG::Point> Points;
 namespace VG{
 	class VectorGraphic
 	{
-	public:
-		VectorGraphic();
-		~VectorGraphic();
-		
+	public:		
 		void addPoint(const Point& p);
 		void removePoint(const Point& p);
 		void erasePoint(int index);
@@ -38,6 +36,7 @@ namespace VG{
 		int getPointCount() const;
 		Point getPoint(int index) const;
 		
+		static VectorGraphic fromXML(std::shared_ptr<XMLNode> topLevelElement);
 	private:
 		Points myPath;
 		bool closed;

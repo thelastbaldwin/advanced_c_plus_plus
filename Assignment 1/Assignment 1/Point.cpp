@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Steve Minor. All rights reserved.
 //
 
+#include "XMLNode.h"
+#include <sstream>
 #include "Point.h"
 
 VG::Point::Point(int _x, int _y):x(_x),y(_y){};

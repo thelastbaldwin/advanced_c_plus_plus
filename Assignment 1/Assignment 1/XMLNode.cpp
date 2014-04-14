@@ -38,7 +38,13 @@ void VG::XMLNode::addChild(VG::XMLNode& child) {
 }
 
 std::string VG::XMLNode::getAttribute(std::string key) const{
-	return attributes.find(key)->second;
+	auto iter = attributes.find(key);
+	
+	//contents of end()->second is undefined behavior
+	if(iter != attributes.end()){
+		return iter->second;
+	}
+	return std::string("");
 }
 
 std::vector<VG::XMLNode> VG::XMLNode::getAllChildren() const{
