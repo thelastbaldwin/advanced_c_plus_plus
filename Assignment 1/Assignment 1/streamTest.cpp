@@ -84,9 +84,12 @@ TEST(readFileTest, fstream){
     using namespace VG;
     
     fstream fs;
-    fs.open("VG1.xml", ios::out);
+    fs.open("/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 1/Assignment 1/VG1.xml", ios::in);
     CHECK(fs.is_open());
-    
+	string line;
+	getline(fs,line);
+	CHECK_EQUAL(STR(<VectorGraphic closed="true">), line);
+	fs.close();
 }
 
 

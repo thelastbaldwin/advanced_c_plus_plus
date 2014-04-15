@@ -25,6 +25,7 @@ namespace VG{
 		void setAttributes(std::map<std::string, std::string>& attr);
 		std::string getName() const;
 		std::string getAttribute(std::string key) const;
+		void addChild(XMLNode& child); //add this
 		std::vector<XMLNode> getAllChildren() const;
 		std::shared_ptr<XMLNode> getParent() const;
 		bool operator==(const XMLNode& rhs);
@@ -34,7 +35,6 @@ namespace VG{
 		std::map<std::string, std::string> attributes;
 		std::vector<XMLNode> children;
 		std::shared_ptr<XMLNode> parent;
-		void addChild(XMLNode& child);
 	};
 }
 

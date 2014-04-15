@@ -1,5 +1,6 @@
 #include "TestHarness.h"
 #include "VectorGraphic.h"
+#include <fstream>
 
 #define STR(s) #s
 
@@ -117,4 +118,35 @@ TEST(fromXMLTest, VectorGraphic){
 	pt = myVG.getPoint(3);
 	CHECK_EQUAL(0, pt.getX());
 	CHECK_EQUAL(10, pt.getY());
+}
+
+TEST(fromXMLFileTest, fstream){
+    using namespace std;
+    using namespace VG;
+    
+    fstream fs;
+	fs.open("/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 1/Assignment 1/VG1.xml", ios::in);
+	if(!fs.is_open()){
+		CHECK_FAIL("unable to open file");
+	}
+	shared_ptr<XMLNode> topLevelElement = (XMLStreamer::parseXml(fs));
+	VectorGraphic myVG = VectorGraphic::fromXML(topLevelElement);
+	
+	CHECK_EQUAL(4, myVG.getPointCount());
+	Point pt = myVG.getPoint(0);
+	CHECK_EQUAL(0, pt.getX());
+	CHECK_EQUAL(0, pt.getY());
+	pt = myVG.getPoint(1);
+	CHECK_EQUAL(10, pt.getX());
+	CHECK_EQUAL(0, pt.getY());
+	pt = myVG.getPoint(2);
+	CHECK_EQUAL(10, pt.getX());
+	CHECK_EQUAL(10, pt.getY());
+	pt = myVG.getPoint(3);
+	CHECK_EQUAL(0, pt.getX());
+	CHECK_EQUAL(10, pt.getY());
+	
+	VectorGraphic::toXML(cout, myVG);
+	
+	fs.close();
 }

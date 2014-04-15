@@ -9,6 +9,10 @@
 #ifndef __Assignment_1__Point__
 #define __Assignment_1__Point__
 
+#include "XMLNode.h"
+#include <iostream>
+#include <sstream>
+
 namespace VG{
 	class Point{
 	public:
@@ -25,6 +29,8 @@ namespace VG{
 		
 		void setX(int _x);
 		void setY(int _y);
+		
+		static std::ostream& toXML(std::ostream& os, const Point& point);
 	private:
 		int x, y;
 	};

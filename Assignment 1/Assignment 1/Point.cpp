@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Steve Minor. All rights reserved.
 //
 
-#include "XMLNode.h"
-#include <sstream>
+
 #include "Point.h"
 
 VG::Point::Point(int _x, int _y):x(_x),y(_y){};
@@ -37,3 +36,8 @@ int VG::Point::getY() const{ return y;}
 
 void VG::Point::setX(int _x){ x = _x;}
 void VG::Point::setY(int _y){ y = _y;}
+
+std::ostream& VG::Point::toXML(std::ostream& os, const Point& point){
+	os << "<Point " << "x=\"" << point.getX() << "\" " << "y=\"" << point.getY() << "\" />" << std::endl;	
+	return os;
+}
