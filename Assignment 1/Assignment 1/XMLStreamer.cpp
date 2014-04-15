@@ -34,7 +34,7 @@ std::map<std::string, std::string> VG::XMLStreamer::getAttributes(std::string ta
 	using namespace std;
 	typedef pair<string, string> keyValue;
 
-	regex attributeRegex("([a-zA-Z09-_]+)=\"([a-zA-Z0-9_\\s]+)\"");
+	regex attributeRegex("([a-zA-Z09-_]+)=\"([a-zA-Z0-9-_\\s]+)\"");
 	smatch attributeMatch;
 	map<string, string> attributes;
 
@@ -51,7 +51,7 @@ bool VG::XMLStreamer::isValid(const std::string &tag) {
 	// optional opening or closing /
 	// mandatory name
 	// optional list of attributes
-	std::regex XMLRegex("\\/?(\\w+)\\s?((?:\\w+=\"[\\s\\w]+\"\\s?)+)?\\/?");
+	std::regex XMLRegex("\\/?(\\w+)\\s?((?:\\w+=\"[\\s\\w-]+\"\\s?)+)?\\/?");
 	
 	return std::regex_match(tag, XMLRegex);
 }
@@ -86,7 +86,7 @@ std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::iostream &xmlStream)
 	
 	do{		
 		if (!isValid(currentElementString)) {
-			throw std::invalid_argument("Invalid tag encountered");
+			throw std::invalid_argument("Invalid tag encountered: " + currentElementString);
 		}
 		
 		bool isClosingTag = XMLStreamer::isClosingTag(currentElementString);

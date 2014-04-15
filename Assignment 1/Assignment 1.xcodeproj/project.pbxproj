@@ -55,6 +55,7 @@
 		F465F83618F9F36F003194F5 /* XMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLNode.h; sourceTree = "<group>"; };
 		F465F83818FA36FA003194F5 /* XMLStreamerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLStreamerTest.cpp; sourceTree = "<group>"; };
 		F465F83A18FA6D23003194F5 /* XMLNodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLNodeTest.cpp; sourceTree = "<group>"; };
+		F465F83C18FCC078003194F5 /* VG1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VG1.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,20 +95,29 @@
 				F4646AA618F4CCEE004C7D63 /* Point.h */,
 				F465F82B18F6F68A003194F5 /* Parse.cpp */,
 				F465F82C18F6F68A003194F5 /* Parse.h */,
-				F4646AA318F4CC79004C7D63 /* vectorGraphicTest.cpp */,
-				F465F82E18F77EB3003194F5 /* streamTest.cpp */,
-				F465F83818FA36FA003194F5 /* XMLStreamerTest.cpp */,
-				F465F83018F787F1003194F5 /* parseTest.cpp */,
+				F465F83D18FCC08A003194F5 /* Tests */,
+				F465F83C18FCC078003194F5 /* VG1.xml */,
 				F465F83218F9CCB4003194F5 /* XMLStreamer.cpp */,
 				F465F83318F9CCB5003194F5 /* XMLStreamer.h */,
 				F465F83518F9F36E003194F5 /* XMLNode.cpp */,
-				F465F83A18FA6D23003194F5 /* XMLNodeTest.cpp */,
 				F465F83618F9F36F003194F5 /* XMLNode.h */,
 				F4646AA818F4D294004C7D63 /* VectorGraphic.cpp */,
 				F4646AA918F4D294004C7D63 /* VectorGraphic.h */,
 				F4646A9A18F4CA43004C7D63 /* Assignment_1.1 */,
 			);
 			path = "Assignment 1";
+			sourceTree = "<group>";
+		};
+		F465F83D18FCC08A003194F5 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F465F82E18F77EB3003194F5 /* streamTest.cpp */,
+				F4646AA318F4CC79004C7D63 /* vectorGraphicTest.cpp */,
+				F465F83818FA36FA003194F5 /* XMLStreamerTest.cpp */,
+				F465F83018F787F1003194F5 /* parseTest.cpp */,
+				F465F83A18FA6D23003194F5 /* XMLNodeTest.cpp */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

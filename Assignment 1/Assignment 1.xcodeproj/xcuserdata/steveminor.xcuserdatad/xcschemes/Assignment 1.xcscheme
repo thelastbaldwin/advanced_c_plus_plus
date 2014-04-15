@@ -57,6 +57,16 @@
             ReferencedContainer = "container:Assignment 1.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 1/Assignment 1/VG2.xml"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 1/Assignment 1/VG2.xml"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

@@ -135,7 +135,7 @@ VG::VectorGraphic VG::VectorGraphic::fromXML(std::shared_ptr<XMLNode> topLevelEl
 }
 
 std::ostream& VG::VectorGraphic::toXML(std::ostream& os, const VectorGraphic& vg){
-	os << "<VectorGraphic " << ((vg.isClosed()) ? "closed=true" : "") << ">" << std::endl;
+	os << "<VectorGraphic " << ((vg.isClosed()) ? "closed=\"true\"" : "") << ">" << std::endl;
 	for(auto iter=vg.myPath.begin(); iter != vg.myPath.end(); ++iter){
 		os << "\t";
 		VG::Point::toXML(os, *iter);
