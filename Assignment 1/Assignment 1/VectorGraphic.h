@@ -37,6 +37,7 @@ namespace VG{
 		Point getPoint(int index) const;
 		
 		static VectorGraphic fromXML(std::shared_ptr<XMLNode> topLevelElement);
+        static std::ostream toXML(const VectorGraphic& vg);
 	private:
 		Points myPath;
 		bool closed;

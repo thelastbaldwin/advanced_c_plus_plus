@@ -9,7 +9,7 @@
 
 #define STR(s) #s
 
-std::string VG::XMLStreamer::getNextToken(std::stringstream& xmlStream){
+std::string VG::XMLStreamer::getNextToken(std::iostream& xmlStream){
 	std::string token;
 	
 	std::getline(xmlStream, token, '>');
@@ -76,7 +76,7 @@ bool VG::XMLStreamer::isSelfClosingTag(const std::string &tag){
 	return false;
 }
 
-std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::stringstream &xmlStream){
+std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::iostream &xmlStream){
 	std::stack<std::shared_ptr<XMLNode>> openTags;
 	std::shared_ptr<XMLNode> topLevelElement;
 	std::shared_ptr<XMLNode> currentElement;

@@ -1,6 +1,7 @@
 #include "TestHarness.h"
 #include "XMLStreamer.h"
 #include "Point.h"
+#include <fstream>
 
 #define STR(s) #s
 
@@ -76,6 +77,16 @@ TEST(hasAttributesTest, regex){
 	if(!found){
 		CHECK_FAIL("Unable to find attributes");
 	}
+}
+
+TEST(readFileTest, fstream){
+    using namespace std;
+    using namespace VG;
+    
+    fstream fs;
+    fs.open("VG1.xml", ios::out);
+    CHECK(fs.is_open());
+    
 }
 
 

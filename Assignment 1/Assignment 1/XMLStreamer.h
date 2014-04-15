@@ -19,14 +19,14 @@
 namespace VG{
 	class XMLStreamer{
 	public:
-		static std::string getNextToken(std::stringstream& xmlStream);
+		static std::string getNextToken(std::iostream& xmlStream);
 		static std::string getTagName(const std::string& tag);
 		static std::map<std::string, std::string> getAttributes(std::string tag);
 		static bool isValid(const std::string& tag);
 		static bool isComment(const std::string& tag); //need for assignment 2
 		static bool isClosingTag(const std::string& tag);
 		static bool isSelfClosingTag(const std::string& tag);
-		static std::shared_ptr<XMLNode> parseXml(std::stringstream& xmlStream); //returns parent node
+		static std::shared_ptr<XMLNode> parseXml(std::iostream& xmlStream); //returns parent node
 	};
 }
 
