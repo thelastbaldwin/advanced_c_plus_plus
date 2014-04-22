@@ -12,23 +12,26 @@
 #include <iostream>
 #include <list>
 #include "PlacedGraphic.h"
+#include "iXML.h"
 
 namespace VG
 {
-    class Layer
-    {
-    private:
-        typedef std::list<PlacedGraphic> PlacedGraphicCollection;
-		
+    class Layer: public iXML
+    {		
     public:
-        typedef PlacedGraphicCollection::iterator PlacedGraphicIterator;
+		Layer();
+		Layer(std::string _alias);
 		
-        // insert, remove, iteration support.
+		void addPlacedGraphic(const PlacedGraphic& pg);
 		
-        // accessors to alias.
+		std::list<PlacedGraphic> getPlacedGraphics();
+		std::string getAlias();
+		
+		std::ostream& toXML(std::ostream& os); //output in XML format
+		iXML& fromXML(const XMLNode& element);
 		
     private:
-        PlacedGraphicCollection graphics;
+        std::list<PlacedGraphic> graphics;
         std::string alias;
     };
 }

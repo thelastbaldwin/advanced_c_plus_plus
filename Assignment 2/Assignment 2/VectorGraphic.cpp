@@ -108,10 +108,13 @@ VG::iXML& VG::VectorGraphic::fromXML(const XMLNode& element){
 	ss >> closed;
 	if (closed) {
 		closeShape();
+	}else{
+		openShape();
 	}
 	ss.clear();
 	ss.str("");
 	
+	myPath.clear();
 	auto children = element.getAllChildren();
 	for(auto iter = children.begin(); iter != children.end(); ++iter){
 		Point p;

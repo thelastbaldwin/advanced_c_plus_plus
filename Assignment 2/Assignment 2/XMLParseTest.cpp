@@ -73,3 +73,45 @@ TEST(fromXMLFileTest, fstream){
 	
 	fs.close();
 }
+
+TEST(toXMLTest, fstream){
+	using namespace std;
+	using namespace VG;
+	
+	fstream fs;
+	fs.open("/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 2/VG2.xml", ios::out);
+	
+	VectorGraphic myVG;
+	myVG.addPoint(Point(10, 10));
+	myVG.addPoint(Point(0, 10));
+	myVG.addPoint(Point(10, 0));
+	myVG.addPoint(Point(0, 0));
+	myVG.addPoint(Point(-5, -5));
+	
+	myVG.toXML(fs);
+	fs.close();
+	
+	fs.open("/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 2/VG2.xml", ios::in);
+	XMLNode topLevelElement = (XMLStreamer::parseXml(fs));
+	myVG.fromXML(topLevelElement);
+	
+	CHECK_EQUAL(5, myVG.getPointCount());
+	Point pt = myVG.getPoint(0);
+	CHECK_EQUAL(10, pt.getX());
+	CHECK_EQUAL(10, pt.getY());
+	pt = myVG.getPoint(1);
+	CHECK_EQUAL(0, pt.getX());
+	CHECK_EQUAL(10, pt.getY());
+	pt = myVG.getPoint(2);
+	CHECK_EQUAL(10, pt.getX());
+	CHECK_EQUAL(0, pt.getY());
+	pt = myVG.getPoint(3);
+	CHECK_EQUAL(0, pt.getX());
+	CHECK_EQUAL(0, pt.getY());
+	pt = myVG.getPoint(4);
+	CHECK_EQUAL(-5, pt.getX());
+	CHECK_EQUAL(-5, pt.getY());
+	
+	fs.close();
+	
+}

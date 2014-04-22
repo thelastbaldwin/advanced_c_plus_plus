@@ -59,6 +59,7 @@
 		F4671DFC1902D4B5009579DD /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F4671DFD1902D4B5009579DD /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		F4671DFF1902D60F009579DD /* XMLParseTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLParseTest.cpp; sourceTree = "<group>"; };
+		F4AA2DA81906BA5A009A89E9 /* VG2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VG2.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				F4671DFF1902D60F009579DD /* XMLParseTest.cpp */,
+				F4AA2DA81906BA5A009A89E9 /* VG2.xml */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
