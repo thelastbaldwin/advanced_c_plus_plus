@@ -11,22 +11,29 @@
 
 #include <iostream>
 #include "Layer.h"
+#include "iXML.h"
 
 namespace VG
 {
-	class Scene
-	{
+	class Scene: public iXML
+	{		
+	public:
+		Scene();
+		Scene(const XMLNode& element);
+		
+		void addLayer(const Layer& l);
+		
+		void setWidth(const int& w) { width = w; };
+		void setHeight(const int& h) {height = h; };
+		
+		int getWidth() const { return width; };
+		int getHeight() const { return height; };
+		
+		std::ostream& toXML(std::ostream& os);
+		iXML& fromXML(const XMLNode& element);
+		
 	private:
-		typedef std::list<Layer> LayerCollection;
-		
-	public: typedef LayerCollection::iterator LayerIterator;
-		
-		// insert, remove, iteration support.
-		
-		// accessors to width and height.
-		
-	private:
-		LayerCollection layers;
+		std::list<Layer> layers;
 		int width;
 		int height;
 	};

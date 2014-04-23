@@ -20,6 +20,7 @@ namespace VG
     {		
     public:
 		Layer();
+		Layer(const XMLNode& element);
 		Layer(std::string _alias);
 		
 		void addPlacedGraphic(const PlacedGraphic& pg);

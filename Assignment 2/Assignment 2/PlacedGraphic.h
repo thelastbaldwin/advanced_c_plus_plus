@@ -10,20 +10,26 @@
 #define __Assignment_2__PlacedGraphic__
 
 #include <iostream>
+#include "iXML.h"
 #include "VectorGraphic.h"
 
 namespace VG{
-	class PlacedGraphic {
+	class PlacedGraphic: public iXML {
 	public:
+		PlacedGraphic();
+		PlacedGraphic(const XMLNode& element);
+		
 		void setPlacementPoint (Point const& placement);
-		Point const& getPlacementPoint () const;
+		const Point& getPlacementPoint () const;
 		
 		void setGraphic (VectorGraphic const& graphic);
 		VectorGraphic const& getGraphic () const;
 		
+		std::ostream& toXML(std::ostream& os);
+		iXML& fromXML(const XMLNode& element);
 	private:
 		Point placementPoint;
-		//VectorGraphic graphic;
+		VectorGraphic graphic;
 	};
 }
 
