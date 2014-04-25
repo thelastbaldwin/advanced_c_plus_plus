@@ -21,7 +21,7 @@ namespace VG{
 	public:
 		XMLNode();
 		XMLNode(std::string _name, std::shared_ptr<VG::XMLNode> _parent = NULL);
-		XMLNode(std::string _name, std::map<std::string, std::string> _attributes, std::shared_ptr<XMLNode> = NULL);
+		XMLNode(std::string _name, std::map<std::string, std::string> _attributes, std::shared_ptr<XMLNode> _parent = NULL);
 		bool hasChildren();
 		void setAttributes(std::map<std::string, std::string>& attr);
 		std::string getName() const;

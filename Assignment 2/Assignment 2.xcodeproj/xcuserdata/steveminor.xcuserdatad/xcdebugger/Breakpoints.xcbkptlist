@@ -25,20 +25,18 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "96"
-         endingLineNumber = "96"
-         landmarkName = "TEST(toXMLTest, fstream)"
-         landmarkType = "7">
+         endingLineNumber = "96">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Assignment 2/XMLStreamer.cpp"
-         timestampString = "420089058.473481"
+         timestampString = "420095450.583994"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "84"
-         endingLineNumber = "84"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
          landmarkName = "VG::XMLStreamer::parseXml(std::iostream &amp;xmlStream)"
          landmarkType = "5">
       </FileBreakpoint>

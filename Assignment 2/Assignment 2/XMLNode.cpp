@@ -14,7 +14,7 @@ VG::XMLNode::XMLNode(std::string _name, std::shared_ptr<XMLNode> _parent):
 	name(_name),
 	parent(_parent){
 		if( _parent != NULL){
-			parent->addChild(*this);
+			_parent->addChild(*this);
 		}
 	};
 
@@ -23,7 +23,7 @@ VG::XMLNode::XMLNode(std::string _name, std::map<std::string, std::string> _attr
 	attributes(_attributes),
 	parent(_parent){
 		if( _parent != NULL){
-			parent->addChild(*this);
+			_parent->addChild(*this);
 		}
 	};
 
