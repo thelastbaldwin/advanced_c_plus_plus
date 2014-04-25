@@ -19,7 +19,7 @@
 namespace VG{
 	class XMLStreamer{
 	public:
-		static XMLNode parseXml(std::iostream& xmlStream); //returns parent node
+		static std::shared_ptr<XMLNode> parseXml(std::iostream& xmlStream); //returns parent node
 	private:
 		static std::string getNextToken(std::iostream& xmlStream);
 		static std::string getTagName(const std::string& tag);

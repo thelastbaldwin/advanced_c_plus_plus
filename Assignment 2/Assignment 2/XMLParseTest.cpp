@@ -36,11 +36,11 @@ TEST(newFormatParse, XMLStreamer){
 		 </Layer>
 		 </Scene>));
 	
-	XMLNode parsedXML = XMLStreamer::parseXml(testXML);
-	//cout << parsedXML->getName() << endl;
+	std::shared_ptr<XMLNode> parsedXML = XMLStreamer::parseXml(testXML);
+	cout << parsedXML->getName() << endl;
 }
 
-TEST(VectorGraphicInterface, VectorGraphic){
+/*TEST(VectorGraphicInterface, VectorGraphic){
 	VG::VectorGraphic vg;
 }
 
@@ -53,9 +53,9 @@ TEST(fromXMLFileTest, fstream){
 	if(!fs.is_open()){
 		CHECK_FAIL("unable to open file");
 	}
-	XMLNode topLevelElement = (XMLStreamer::parseXml(fs));
+	std::shared_ptr<XMLNode> topLevelElement = XMLStreamer::parseXml(fs);
 	VectorGraphic myVG;
-	myVG.fromXML(topLevelElement);
+	myVG.fromXML(*topLevelElement);
 	
 	CHECK_EQUAL(4, myVG.getPointCount());
 	Point pt = myVG.getPoint(0);
@@ -92,8 +92,8 @@ TEST(toXMLTest, fstream){
 	fs.close();
 	
 	fs.open("/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 2/VG2.xml", ios::in);
-	XMLNode topLevelElement = (XMLStreamer::parseXml(fs));
-	myVG.fromXML(topLevelElement);
+	std::shared_ptr<XMLNode> topLevelElement = XMLStreamer::parseXml(fs);
+	myVG.fromXML(*topLevelElement);
 	
 	CHECK_EQUAL(5, myVG.getPointCount());
 	Point pt = myVG.getPoint(0);
@@ -114,4 +114,4 @@ TEST(toXMLTest, fstream){
 	
 	fs.close();
 	
-}
+}*/

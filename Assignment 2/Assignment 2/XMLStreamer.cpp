@@ -76,10 +76,9 @@ bool VG::XMLStreamer::isSelfClosingTag(const std::string &tag){
 	return false;
 }
 
-VG::XMLNode VG::XMLStreamer::parseXml(std::iostream &xmlStream){
-	std::stack<std::shared_ptr<XMLNode>> openTags;
+std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::iostream &xmlStream){
+	std::stack<std::shared_ptr<XMLNode>> openTags; //problem - pushing to openTags creates a copy! 
 	std::shared_ptr<XMLNode> topLevelElement;
-	std::shared_ptr<XMLNode> currentElement;
 	std::string currentElementString = XMLStreamer::getNextToken(xmlStream);
 	std::string currentTagName;
 	std::map<std::string, std::string> currentTagAttributes;
@@ -103,11 +102,10 @@ VG::XMLNode VG::XMLStreamer::parseXml(std::iostream &xmlStream){
 			currentTagAttributes = getAttributes(currentElementString);
 			if (openTags.empty()){
 				//this is the top level element condition
-				topLevelElement = std::make_shared<XMLNode>(XMLNode(currentTagName, currentTagAttributes));
+				topLevelElement = std::shared_ptr<XMLNode>(new XMLNode(currentTagName, currentTagAttributes));
 				openTags.push(topLevelElement);
 			}else{
-				currentElement = std::make_shared<XMLNode>(XMLNode(currentTagName, currentTagAttributes, openTags.top()));
-				openTags.push(currentElement);
+				openTags.push(std::shared_ptr<XMLNode>(new XMLNode(currentTagName, currentTagAttributes, openTags.top())));
 			}
 		
 		}
@@ -131,7 +129,7 @@ VG::XMLNode VG::XMLStreamer::parseXml(std::iostream &xmlStream){
 				//edge case of self closing tag without parent. Assume top level element
 				topLevelElement = std::make_shared<XMLNode>(XMLNode(currentTagName, currentTagAttributes));
 			}else{
-				currentElement = std::make_shared<XMLNode>(XMLNode(currentTagName, currentTagAttributes, openTags.top()));
+				std::shared_ptr<XMLNode>(new XMLNode(currentTagName, currentTagAttributes, openTags.top()));
 			}
 		
 		}
@@ -143,5 +141,5 @@ VG::XMLNode VG::XMLStreamer::parseXml(std::iostream &xmlStream){
 		throw std::invalid_argument("Mismatched tags in source");
 	}
 	
-	return *topLevelElement;
+	return topLevelElement;
 }
