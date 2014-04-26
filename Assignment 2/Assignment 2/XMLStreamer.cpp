@@ -77,11 +77,13 @@ bool VG::XMLStreamer::isSelfClosingTag(const std::string &tag){
 }
 
 std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::iostream &xmlStream){
-	std::stack<std::shared_ptr<XMLNode>> openTags; //problem - pushing to openTags creates a copy! 
-	std::shared_ptr<XMLNode> topLevelElement;
+//	1. manually call add child on parent element with element assigned to variable
+//	2. verify that the parent called from XMLNode constructor is actually adding the child
+	std::stack<std::shared_ptr<XMLNode>> openTags; //problem - pushing to openTags creates a copy!
 	std::string currentElementString = XMLStreamer::getNextToken(xmlStream);
 	std::string currentTagName;
 	std::map<std::string, std::string> currentTagAttributes;
+	std::shared_ptr<XMLNode> topLevelElement;
 	
 	do{
 		if (isComment(currentElementString)) {
@@ -102,10 +104,12 @@ std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::iostream &xmlStream)
 			currentTagAttributes = getAttributes(currentElementString);
 			if (openTags.empty()){
 				//this is the top level element condition
-				topLevelElement = std::shared_ptr<XMLNode>(new XMLNode(currentTagName, currentTagAttributes));
-				openTags.push(topLevelElement);
+				std::shared_ptr<XMLNode> newNode = std::shared_ptr<XMLNode>(new XMLNode(currentTagName, currentTagAttributes));
+				openTags.push(newNode);
 			}else{
-				openTags.push(std::shared_ptr<XMLNode>(new XMLNode(currentTagName, currentTagAttributes, openTags.top())));
+				std::shared_ptr<XMLNode> newNode = std::shared_ptr<XMLNode>(new XMLNode(currentTagName, currentTagAttributes));
+				openTags.top()->addChild(newNode);
+				openTags.push(newNode);
 			}
 		
 		}
@@ -114,6 +118,7 @@ std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::iostream &xmlStream)
 				throw std::invalid_argument("Mismatched tags in source");
 			}
 			else if (getTagName(currentElementString) == openTags.top()->getName()){
+				topLevelElement = openTags.top();
 				openTags.pop();
 				
 			}else{
@@ -127,9 +132,10 @@ std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::iostream &xmlStream)
 			
 			if (openTags.empty()) {
 				//edge case of self closing tag without parent. Assume top level element
-				topLevelElement = std::make_shared<XMLNode>(XMLNode(currentTagName, currentTagAttributes));
+				throw std::invalid_argument("Single self closing tag without parent");
 			}else{
-				std::shared_ptr<XMLNode>(new XMLNode(currentTagName, currentTagAttributes, openTags.top()));
+				std::shared_ptr<XMLNode> newNode = std::shared_ptr<XMLNode>(new XMLNode(currentTagName, currentTagAttributes));
+				openTags.top()->addChild(newNode);
 			}
 		
 		}

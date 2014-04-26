@@ -17,7 +17,7 @@ namespace VG{
 	class PlacedGraphic: public iXML {
 	public:
 		PlacedGraphic();
-		PlacedGraphic(const XMLNode& element);
+		PlacedGraphic(const std::shared_ptr<XMLNode> element);
 		
 		void setPlacementPoint (Point const& placement);
 		const Point& getPlacementPoint () const;
@@ -26,7 +26,7 @@ namespace VG{
 		VectorGraphic const& getGraphic () const;
 		
 		std::ostream& toXML(std::ostream& os);
-		iXML& fromXML(const XMLNode& element);
+		iXML& fromXML(const std::shared_ptr<XMLNode> element);
 	private:
 		Point placementPoint;
 		VectorGraphic graphic;

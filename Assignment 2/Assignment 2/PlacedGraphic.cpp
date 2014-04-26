@@ -10,7 +10,7 @@
 
 VG::PlacedGraphic::PlacedGraphic(){};
 
-VG::PlacedGraphic::PlacedGraphic(const XMLNode& element){
+VG::PlacedGraphic::PlacedGraphic(const std::shared_ptr<XMLNode> element){
 	this->fromXML(element);
 };
 
@@ -32,15 +32,15 @@ std::ostream& VG::PlacedGraphic::toXML(std::ostream &os){
 	return os;
 }
 
-VG::iXML& VG::PlacedGraphic::fromXML(const VG::XMLNode &element){
+VG::iXML& VG::PlacedGraphic::fromXML(const std::shared_ptr<XMLNode> element){
 	std::stringstream ss;
 	int x, y;
-	ss << element.getAttribute("x");
+	ss << element->getAttribute("x");
 	ss >> x;
 	ss.str("");
 	ss.clear();
 	
-	ss << element.getAttribute("y");
+	ss << element->getAttribute("y");
 	ss >> y;
 	ss.str("");
 	ss.clear();
@@ -48,7 +48,7 @@ VG::iXML& VG::PlacedGraphic::fromXML(const VG::XMLNode &element){
 	placementPoint.setX(x);
 	placementPoint.setY(y);
 	
-	std::vector<VG::XMLNode> children = element.getAllChildren();
+	auto children = element->getAllChildren();
 	// this feels a little dirty, but each placedGraphic should
 	// only have a single child element
 	graphic.fromXML(children[0]);

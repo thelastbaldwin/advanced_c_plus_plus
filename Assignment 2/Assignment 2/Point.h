@@ -32,7 +32,7 @@ namespace VG{
 		void setX(int _x);
 		void setY(int _y);
 		
-		iXML& fromXML(const XMLNode& element);
+		iXML& fromXML(const std::shared_ptr<XMLNode> element);
         std::ostream& toXML(std::ostream& os);
 	private:
 		int x, y;

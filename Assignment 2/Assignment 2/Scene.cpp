@@ -14,7 +14,7 @@ void VG::Scene::addLayer(const VG::Layer &l){
 
 VG::Scene::Scene():width(0), height(0){};
 
-VG::Scene::Scene(const XMLNode& element){
+VG::Scene::Scene(const std::shared_ptr<VG::XMLNode> element){
 	this->fromXML(element);
 }
 
@@ -22,6 +22,7 @@ std::ostream& VG::Scene::toXML(std::ostream &os){
 	return os;
 }
 
-VG::iXML& VG::Scene::fromXML(const VG::XMLNode &element){
+//Still need to write this!
+VG::iXML& VG::Scene::fromXML(const std::shared_ptr<XMLNode> element){
 	return *this;
 }

@@ -36,8 +36,8 @@ TEST(newFormatParse, XMLStreamer){
 		 </Layer>
 		 </Scene>));
 	
-	std::shared_ptr<XMLNode> parsedXML = XMLStreamer::parseXml(testXML);
-	cout << parsedXML->getName() << endl;
+	shared_ptr<XMLNode> parsedXML = XMLStreamer::parseXml(testXML);
+	cout << *parsedXML;
 }
 
 /*TEST(VectorGraphicInterface, VectorGraphic){

@@ -19,7 +19,7 @@ namespace VG
 	{		
 	public:
 		Scene();
-		Scene(const XMLNode& element);
+		Scene(const std::shared_ptr<XMLNode> element);
 		
 		void addLayer(const Layer& l);
 		
@@ -30,7 +30,7 @@ namespace VG
 		int getHeight() const { return height; };
 		
 		std::ostream& toXML(std::ostream& os);
-		iXML& fromXML(const XMLNode& element);
+		iXML& fromXML(const std::shared_ptr<XMLNode> element);
 		
 	private:
 		std::list<Layer> layers;

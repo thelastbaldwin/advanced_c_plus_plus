@@ -20,7 +20,7 @@ namespace VG
     {		
     public:
 		Layer();
-		Layer(const XMLNode& element);
+		Layer(const std::shared_ptr<XMLNode> element);
 		Layer(std::string _alias);
 		
 		void addPlacedGraphic(const PlacedGraphic& pg);
@@ -29,7 +29,7 @@ namespace VG
 		std::string getAlias();
 		
 		std::ostream& toXML(std::ostream& os); //output in XML format
-		iXML& fromXML(const XMLNode& element);
+		iXML& fromXML(const std::shared_ptr<XMLNode> element);
 		
     private:
         std::list<PlacedGraphic> graphics;

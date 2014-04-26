@@ -90,12 +90,12 @@ VG::Point VG::VectorGraphic::getPoint(int index) const{
 	return myPath[index];
 }
 
-VG::iXML& VG::VectorGraphic::fromXML(const XMLNode& element){
+VG::iXML& VG::VectorGraphic::fromXML(const std::shared_ptr<XMLNode> element){
 	std::stringstream ss;
 	std::string name;
 	bool closed;	
 	
-	ss << element.getName();
+	ss << element->getName();
 	ss >> name;
 	ss.clear();
 	ss.str("");
@@ -104,7 +104,7 @@ VG::iXML& VG::VectorGraphic::fromXML(const XMLNode& element){
 		std::invalid_argument("Top level element is not VectorGraphic");
 	}
 	
-	ss << element.getAttribute("closed");
+	ss << element->getAttribute("closed");
 	ss >> closed;
 	if (closed) {
 		closeShape();
@@ -115,7 +115,7 @@ VG::iXML& VG::VectorGraphic::fromXML(const XMLNode& element){
 	ss.str("");
 	
 	myPath.clear();
-	auto children = element.getAllChildren();
+	auto children = element->getAllChildren();
 	for(auto iter = children.begin(); iter != children.end(); ++iter){
 		Point p;
 		p.fromXML(*iter);

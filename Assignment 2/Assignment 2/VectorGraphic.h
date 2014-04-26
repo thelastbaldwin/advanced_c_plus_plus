@@ -37,7 +37,7 @@ namespace VG{
 		int getPointCount() const;
 		Point getPoint(int index) const;
 		
-		iXML& fromXML(const XMLNode& element);
+		iXML& fromXML(const std::shared_ptr<XMLNode> element);
         std::ostream& toXML(std::ostream& os);
 	private:
 		Points myPath;

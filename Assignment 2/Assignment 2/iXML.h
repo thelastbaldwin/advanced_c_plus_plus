@@ -15,7 +15,7 @@ namespace VG{
 	class iXML{
 	public:
 		virtual std::ostream& toXML(std::ostream& os) = 0; //output in XML format
-		virtual iXML& fromXML(const XMLNode& element) = 0; //create empty object and fill from xml data
+		virtual iXML& fromXML(const std::shared_ptr<XMLNode> element) = 0; //create empty object and fill from xml data
 	};
 }
 

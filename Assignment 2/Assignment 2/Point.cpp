@@ -42,10 +42,10 @@ std::ostream& VG::Point::toXML(std::ostream& os){
 	return os;
 }
 
-VG::iXML& VG::Point::fromXML(const XMLNode& element){
+VG::iXML& VG::Point::fromXML(const std::shared_ptr<XMLNode> element){
 	int x, y;
 	std::stringstream ss;
-	std::string xString = element.getAttribute("x");
+	std::string xString = element->getAttribute("x");
 	
 	ss.clear();
 	ss.str("");
@@ -54,7 +54,7 @@ VG::iXML& VG::Point::fromXML(const XMLNode& element){
 	
 	ss.clear();
 	ss.str("");
-	ss << element.getAttribute("y");
+	ss << element->getAttribute("y");
 	ss >> y;
 	
 	setX(x);

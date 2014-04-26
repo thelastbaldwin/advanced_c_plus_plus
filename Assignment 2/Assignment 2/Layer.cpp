@@ -9,7 +9,7 @@
 #include "Layer.h"
 
 VG::Layer::Layer():alias(""){};
-VG::Layer::Layer(const XMLNode& element){
+VG::Layer::Layer(const std::shared_ptr<XMLNode> element){
 	this->fromXML(element);
 };
 VG::Layer::Layer(std::string _alias):alias(_alias){};
@@ -37,9 +37,9 @@ std::ostream& VG::Layer::toXML(std::ostream& os){
 	return os;
 }
 
-VG::iXML& VG::Layer::fromXML(const VG::XMLNode &element){
-	alias = element.getAttribute("alias");
-	std::vector<XMLNode> children = element.getAllChildren();
+VG::iXML& VG::Layer::fromXML(const std::shared_ptr<XMLNode> element){
+	alias = element->getAttribute("alias");
+	auto children = element->getAllChildren();
 	
 	for(auto iter: children){
 		PlacedGraphic pg(iter);

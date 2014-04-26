@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Assignment 2/XMLStreamer.cpp"
-         timestampString = "420088655.852068"
+         timestampString = "420133462.194609"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "83"
-         endingLineNumber = "83"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
          landmarkName = "VG::XMLStreamer::parseXml(std::iostream &amp;xmlStream)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,22 +21,46 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Assignment 2/XMLParseTest.cpp"
-         timestampString = "420087772.539555"
+         timestampString = "420130616.560522"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "96"
-         endingLineNumber = "96">
+         startingLineNumber = "95"
+         endingLineNumber = "95">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Assignment 2/XMLStreamer.cpp"
-         timestampString = "420095450.583994"
+         timestampString = "420176036.249212"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "144"
-         endingLineNumber = "144"
+         startingLineNumber = "153"
+         endingLineNumber = "153">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Assignment 2/XMLStreamer.cpp"
+         timestampString = "420176036.249212"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "150"
+         endingLineNumber = "150"
+         landmarkName = "VG::XMLStreamer::parseXml(std::iostream &amp;xmlStream)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Assignment 2/XMLStreamer.cpp"
+         timestampString = "420176036.249212"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "85"
+         endingLineNumber = "85"
          landmarkName = "VG::XMLStreamer::parseXml(std::iostream &amp;xmlStream)"
          landmarkType = "5">
       </FileBreakpoint>

@@ -26,17 +26,18 @@ namespace VG{
 		void setAttributes(std::map<std::string, std::string>& attr);
 		std::string getName() const;
 		std::string getAttribute(std::string key) const;
-		void addChild(XMLNode& child); //add this
-		std::vector<XMLNode> getAllChildren() const;
-		std::shared_ptr<XMLNode> getParent() const;
+		const std::map<std::string, std::string>& getAllAttributes() const;
+		void addChild(std::shared_ptr<XMLNode> child);
+		const std::vector<std::shared_ptr<XMLNode>>& getAllChildren() const;
 		bool operator==(const XMLNode& rhs);
 		bool operator!=(const XMLNode& rhs);
 	private:
 		std::string name;
 		std::map<std::string, std::string> attributes;
-		std::vector<XMLNode> children;
-		std::shared_ptr<XMLNode> parent;
+		std::vector<std::shared_ptr<XMLNode>> children;
 	};
 }
+
+std::ostream& operator<<(std::ostream& os, const VG::XMLNode& xmlNode);
 
 #endif /* defined(__Assignment_1__XMLNode__) */
