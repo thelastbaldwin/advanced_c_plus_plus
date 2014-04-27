@@ -42,8 +42,7 @@ VG::iXML& VG::Layer::fromXML(const std::shared_ptr<XMLNode> element){
 	auto children = element->getAllChildren();
 	
 	for(auto iter: children){
-		PlacedGraphic pg(iter);
-		addPlacedGraphic(pg);
+		addPlacedGraphic(PlacedGraphic(iter));
 	}
 	return *this;
 }

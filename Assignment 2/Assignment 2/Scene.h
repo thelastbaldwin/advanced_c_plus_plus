@@ -34,6 +34,7 @@ namespace VG
 		
 	private:
 		std::list<Layer> layers;
+		bool checkBounds(); //determine if layers are within scene
 		int width;
 		int height;
 	};

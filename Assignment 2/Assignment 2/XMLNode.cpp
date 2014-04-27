@@ -10,20 +10,12 @@
 VG::XMLNode::XMLNode():name(""){}
 
 
-VG::XMLNode::XMLNode(std::string _name, std::shared_ptr<XMLNode> _parent):
-	name(_name){
-		if( _parent != NULL){
-			_parent->addChild(std::shared_ptr<XMLNode>(this));
-		}
-	};
+VG::XMLNode::XMLNode(std::string _name):
+	name(_name){};
 
-VG::XMLNode::XMLNode(std::string _name, std::map<std::string, std::string> _attributes, std::shared_ptr<XMLNode> _parent):
+VG::XMLNode::XMLNode(std::string _name, std::map<std::string, std::string> _attributes):
 	name(_name),
-	attributes(_attributes){
-		if( _parent != NULL){
-			_parent->addChild(std::shared_ptr<XMLNode>(this));
-		}
-	};
+	attributes(_attributes){};
 
 bool VG::XMLNode::hasChildren(){
 	return (children.size() > 0) ? true : false;

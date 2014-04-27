@@ -23,10 +23,12 @@ namespace VG{
 		const Point& getPlacementPoint () const;
 		
 		void setGraphic (VectorGraphic const& graphic);
-		VectorGraphic const& getGraphic () const;
+		const VectorGraphic& getGraphic () const;
 		
 		std::ostream& toXML(std::ostream& os);
 		iXML& fromXML(const std::shared_ptr<XMLNode> element);
+		
+		std::pair<int, int> getBounds();
 	private:
 		Point placementPoint;
 		VectorGraphic graphic;

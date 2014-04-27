@@ -104,7 +104,7 @@ VG::iXML& VG::VectorGraphic::fromXML(const std::shared_ptr<XMLNode> element){
 		std::invalid_argument("Top level element is not VectorGraphic");
 	}
 	
-	ss << element->getAttribute("closed");
+	ss << std::boolalpha << element->getAttribute("closed");
 	ss >> closed;
 	if (closed) {
 		closeShape();

@@ -77,9 +77,7 @@ bool VG::XMLStreamer::isSelfClosingTag(const std::string &tag){
 }
 
 std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::iostream &xmlStream){
-//	1. manually call add child on parent element with element assigned to variable
-//	2. verify that the parent called from XMLNode constructor is actually adding the child
-	std::stack<std::shared_ptr<XMLNode>> openTags; //problem - pushing to openTags creates a copy!
+	std::stack<std::shared_ptr<XMLNode>> openTags; 
 	std::string currentElementString = XMLStreamer::getNextToken(xmlStream);
 	std::string currentTagName;
 	std::map<std::string, std::string> currentTagAttributes;

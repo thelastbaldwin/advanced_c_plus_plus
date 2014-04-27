@@ -26,6 +26,10 @@ void VG::PlacedGraphic::setGraphic(const VG::VectorGraphic& vg){
 	graphic = vg;
 }
 
+const VG::VectorGraphic& VG::PlacedGraphic::getGraphic() const {
+	return graphic;
+}
+
 std::ostream& VG::PlacedGraphic::toXML(std::ostream &os){
 	os << "<PlacedGraphic x=\"" << placementPoint.getX()
 	<< "\" y=\"" << placementPoint.getY() << "\">" << std::endl;
@@ -54,4 +58,13 @@ VG::iXML& VG::PlacedGraphic::fromXML(const std::shared_ptr<XMLNode> element){
 	graphic.fromXML(children[0]);
 	
 	return *this;
+}
+
+std::pair<int, int> VG::PlacedGraphic::getBounds(){
+	int x, y;
+	
+	x = graphic.getWidth() + getPlacementPoint().getX();
+	y= graphic.getHeight() + getPlacementPoint().getY();
+	
+	return std::pair<int, int>(x,y);
 }
