@@ -46,3 +46,19 @@ VG::iXML& VG::Layer::fromXML(const std::shared_ptr<XMLNode> element){
 	}
 	return *this;
 }
+
+std::pair<int, int> VG::Layer::getBounds(){
+	int xMax = 0;
+	int yMax = 0;
+	
+	std::for_each(graphics.begin(), graphics.end(), [&](VG::PlacedGraphic graphic){
+		std::pair<int, int> graphicBounds = graphic.getBounds();
+		if (graphicBounds.first > xMax) {
+			xMax = graphicBounds.first;
+		}
+		if (graphicBounds.second > yMax) {
+			yMax = graphicBounds.second;
+		}
+	});
+	return std::pair<int, int>(xMax, yMax);
+}

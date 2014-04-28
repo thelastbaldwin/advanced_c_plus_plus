@@ -10,6 +10,7 @@
 #define __Assignment_2__Scene__
 
 #include <iostream>
+#include <stdexcept>
 #include "Layer.h"
 #include "iXML.h"
 
@@ -34,7 +35,7 @@ namespace VG
 		
 	private:
 		std::list<Layer> layers;
-		bool checkBounds(); //determine if layers are within scene
+		void checkBounds(); //determine if layers are within scene
 		int width;
 		int height;
 	};

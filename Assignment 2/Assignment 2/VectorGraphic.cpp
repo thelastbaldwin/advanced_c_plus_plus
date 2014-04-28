@@ -47,7 +47,7 @@ bool VG::VectorGraphic::isClosed() const{
 int VG::VectorGraphic::getWidth() const{
 	int width = 0;
 	
-	if(myPath.size() > 1){
+	if(myPath.size()){
 		auto max = std::max_element(myPath.begin(), myPath.end(),
 			[](const VG::Point& lhs, const VG::Point& rhs){
 				return lhs.getX() < rhs.getX();
@@ -66,7 +66,7 @@ int VG::VectorGraphic::getWidth() const{
 int VG::VectorGraphic::getHeight() const{
 	int height = 0;
 	
-	if(myPath.size() > 1){
+	if(myPath.size()){
 		auto max = std::max_element(myPath.begin(), myPath.end(),
 			[](const VG::Point& lhs, const VG::Point& rhs){
 				return lhs.getY() < rhs.getY();

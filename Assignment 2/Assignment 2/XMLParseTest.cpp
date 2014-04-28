@@ -55,31 +55,32 @@ TEST(sceneFromXML, Scene){
 	using namespace std;
 	using namespace VG;
 	
-	stringstream testXML(STR(<Scene width="800" height="600">
-							 <Layer alias="sky">
-							 <PlacedGraphic x="0" y="0">
-							 <VectorGraphic closed="true">
-							 <Point x="0" y="10" />
-							 <!-- etc... -->
-							 </VectorGraphic>
-							 </PlacedGraphic>
-							 <PlacedGraphic x="700" y="0">
-							 <VectorGraphic closed="true">
-							 <!-- etc... -->
-							 </VectorGraphic>
-							 </PlacedGraphic>
-							 </Layer>
-							 <Layer alias="mountains">
-							 <PlacedGraphic x="0" y="0">
-							 <VectorGraphic closed="false">
-							 <!-- etc... -->
-							 </VectorGraphic>
-							 </PlacedGraphic>
-							 </Layer>
-							 <Layer alias="houses">
-							 <!-- etc... -->
-							 </Layer>
-							 </Scene>));
+	stringstream testXML(STR(
+	 <Scene width="800" height="600">
+		 <Layer alias="sky">
+			 <PlacedGraphic x="0" y="0">
+				 <VectorGraphic closed="true">
+				 <Point x="0" y="10" />
+				 <!-- etc... -->
+				 </VectorGraphic>
+			 </PlacedGraphic>
+			 <PlacedGraphic x="700" y="0">
+				 <VectorGraphic closed="true">
+				 <!-- etc... -->
+				 </VectorGraphic>
+			 </PlacedGraphic>
+		 </Layer>
+		 <Layer alias="mountains">
+			 <PlacedGraphic x="0" y="0">
+				 <VectorGraphic closed="false">
+				 <!-- etc... -->
+				 </VectorGraphic>
+			 </PlacedGraphic>
+		 </Layer>
+		 <Layer alias="houses">
+		 <!-- etc... -->
+		 </Layer>
+	 </Scene>));
 	
 	shared_ptr<XMLNode> parsedXML = XMLStreamer::parseXml(testXML);
 	Scene myScene(parsedXML);
@@ -116,8 +117,11 @@ TEST(placedGraphicFromXML, PlacedGraphic)
 	using namespace std;
 	using namespace VG;
 	
-	stringstream testXML(STR(<PlacedGraphic x="0" y="0">
+	stringstream testXML(STR(<PlacedGraphic x="10" y="20">
 							 <VectorGraphic closed="true">
+							 <Point x="0" y="0" />
+							 <Point x="10" y="0" />
+							 <Point x="10" y="10" />
 							 <Point x="0" y="10" />
 							 <!-- etc... -->
 							 </VectorGraphic>
@@ -126,6 +130,22 @@ TEST(placedGraphicFromXML, PlacedGraphic)
 	PlacedGraphic myPG(XMLStreamer::parseXml(testXML));
 	VectorGraphic myVG = myPG.getGraphic();
 	CHECK(myVG.isClosed());
+	
+	CHECK_EQUAL(0, myVG.getPoint(0).getX());
+	CHECK_EQUAL(0, myVG.getPoint(0).getY());
+	CHECK_EQUAL(10, myVG.getPoint(1).getX());
+	CHECK_EQUAL(0, myVG.getPoint(1).getY());
+	CHECK_EQUAL(10, myVG.getPoint(2).getX());
+	CHECK_EQUAL(10, myVG.getPoint(2).getY());
+	CHECK_EQUAL(0, myVG.getPoint(3).getX());
+	CHECK_EQUAL(10, myVG.getPoint(3).getY());
+	
+	CHECK_EQUAL(10, myVG.getHeight());
+	CHECK_EQUAL(10, myVG.getWidth());
+	
+	pair<int, int> pgBounds = myPG.getBounds();
+	CHECK_EQUAL(20, pgBounds.first);
+	CHECK_EQUAL(30, pgBounds.second);
 }
 
 

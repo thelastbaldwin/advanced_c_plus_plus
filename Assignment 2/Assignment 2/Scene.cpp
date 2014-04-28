@@ -12,10 +12,13 @@ void VG::Scene::addLayer(const VG::Layer &l){
 	layers.push_back(l);
 }
 
-VG::Scene::Scene():width(0), height(0){};
+VG::Scene::Scene():width(0), height(0){
+	checkBounds();
+};
 
 VG::Scene::Scene(const std::shared_ptr<VG::XMLNode> element){
 	this->fromXML(element);
+	checkBounds();
 }
 
 std::ostream& VG::Scene::toXML(std::ostream &os){
@@ -45,12 +48,11 @@ VG::iXML& VG::Scene::fromXML(const std::shared_ptr<XMLNode> element){
 	return *this;
 }
 
-bool VG::Scene::checkBounds(){
-	//get all layers
-	//get all placedGraphics
-	//get all vectorGraphics
-	//determine highest and lowest x and y coordinates
-	//if x is <= width and y <= height, return true.
-	//otherwise false
-	return true;
+void VG::Scene::checkBounds(){
+	std::for_each(layers.begin(), layers.end(), [&](VG::Layer layer){
+		std::pair<int, int> layerBounds = layer.getBounds();
+		if( layerBounds.first > getWidth() || layerBounds.second > getHeight()){
+			throw std::out_of_range("Layers within scene exceed bounds");
+		}
+	});
 }

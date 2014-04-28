@@ -64,7 +64,7 @@ std::pair<int, int> VG::PlacedGraphic::getBounds(){
 	int x, y;
 	
 	x = graphic.getWidth() + getPlacementPoint().getX();
-	y= graphic.getHeight() + getPlacementPoint().getY();
+	y = graphic.getHeight() + getPlacementPoint().getY();
 	
 	return std::pair<int, int>(x,y);
 }

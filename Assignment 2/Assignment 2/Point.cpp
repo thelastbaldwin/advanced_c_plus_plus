@@ -8,7 +8,7 @@
 
 
 #include "Point.h"
-VG::Point::Point():x(0), y(0){};
+VG::Point::Point(){};
 VG::Point::Point(int _x, int _y):x(_x),y(_y){};
 VG::Point::Point(const Point& other):x(other.x), y(other.y){};
 

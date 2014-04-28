@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <list>
+#include <algorithm>
 #include "PlacedGraphic.h"
 #include "iXML.h"
 
@@ -31,6 +32,7 @@ namespace VG
 		std::ostream& toXML(std::ostream& os); //output in XML format
 		iXML& fromXML(const std::shared_ptr<XMLNode> element);
 		
+		std::pair<int, int> getBounds();
     private:
         std::list<PlacedGraphic> graphics;
         std::string alias;
