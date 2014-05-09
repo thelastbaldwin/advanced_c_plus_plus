@@ -10,6 +10,7 @@
 
 #include <cstdint>
 #include <iosfwd>
+#include "Byte.h"
 
 namespace Binary{
 	class DoubleWord{
@@ -20,6 +21,8 @@ namespace Binary{
 		static DoubleWord readLittleEndian(std::istream& is);
 	private:
 		uint32_t wrd;
+        static DoubleWord readNativeOrder(std::istream& is);
+        static DoubleWord readSwappedOrder(std::istream& is);
 	};
 }
 

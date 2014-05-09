@@ -13,12 +13,36 @@ namespace Binary{
 	DoubleWord::operator uint32_t(){
 		return wrd;
 	}
-	
-	DoubleWord DoubleWord::readBigEndian(std::istream &is){
-		
-	}
-	
-	DoubleWord DoubleWord::readLittleEndian(std::istream &is){
-		
-	}
+	    
+    DoubleWord DoubleWord::readBigEndian(std::istream &is){
+        return readSwappedOrder(is);
+    }
+    
+    DoubleWord DoubleWord::readLittleEndian(std::istream &is){
+        return readNativeOrder(is);
+    }
+    
+    DoubleWord DoubleWord::readNativeOrder(std::istream& is){
+        DoubleWord doubleword;
+        Byte *bytes = reinterpret_cast<Byte*>(&doubleword);
+        
+        bytes[0] = Byte::read(is);
+        bytes[1] = Byte::read(is);
+        bytes[2] = Byte::read(is);
+        bytes[3] = Byte::read(is);
+        
+        return doubleword;
+    }
+    
+    DoubleWord DoubleWord::readSwappedOrder(std::istream& is){
+        DoubleWord doubleword;
+        Byte *bytes = reinterpret_cast<Byte*>(&doubleword);
+        
+        bytes[3] = Byte::read(is);
+        bytes[2] = Byte::read(is);
+        bytes[1] = Byte::read(is);
+        bytes[0] = Byte::read(is);
+        
+        return doubleword;
+    }
 }
