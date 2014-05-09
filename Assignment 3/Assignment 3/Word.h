@@ -10,6 +10,7 @@
 
 #include <cstdint>
 #include <iosfwd>
+#include "Byte.h"
 
 namespace Binary{
 	class Word{
@@ -22,7 +23,7 @@ namespace Binary{
         
     private:
         uint16_t wrd;
-        static Word readNativeOrder(std::istream& sourceStream);
-        static Word readSwappedOrder(std::istream& sourceStream);
+        static Word readNativeOrder(std::istream& is);
+        static Word readSwappedOrder(std::istream& is);
 	};
 }

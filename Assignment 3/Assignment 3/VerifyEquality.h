@@ -6,9 +6,17 @@
 //  Copyright (c) 2014 Steve Minor. All rights reserved.
 //
 
-#ifndef __Assignment_3__VerifyEquality__
-#define __Assignment_3__VerifyEquality__
+#pragma once
 
 #include <iostream>
+#include <string>
+#include <sstream>
 
-#endif /* defined(__Assignment_3__VerifyEquality__) */
+template<typename T>
+void verifyEquality(const T& expected, const T& actual, std::string type){
+    if (expected != actual){
+        std::stringstream ss;
+        ss << "Expected " << type << " to equal " << expected << ", but was " << actual;
+        throw std::runtime_error(ss.str());
+    }
+}

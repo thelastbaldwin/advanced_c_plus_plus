@@ -13,4 +13,32 @@ namespace Binary{
 	Word::operator uint16_t() const{
 		return wrd;
 	}
+    
+    Word Word::readBigEndian(std::istream &is){
+        return readSwappedOrder(is);
+    }
+    
+    Word Word::readLittleEndian(std::istream &is){
+        return readNativeOrder(is);
+    }
+    
+    Word Word::readNativeOrder(std::istream& sourceStream){        
+        Word word;
+        Byte *bytes = reinterpret_cast<Byte*>(&word);
+
+        bytes[0] = Byte::read(sourceStream);
+        bytes[1] = Byte::read(sourceStream);
+        
+        return word;
+    }    
+    
+    Word Word::readSwappedOrder(std::istream& sourceStream){
+        Word word;
+        Byte *bytes = reinterpret_cast<Byte*>(&word);
+        
+        bytes[1] = Byte::read(sourceStream);
+        bytes[0] = Byte::read(sourceStream);
+        
+        return word;        
+    }
 }
