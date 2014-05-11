@@ -19,8 +19,8 @@
 		F4337230191C719F005DE0A7 /* Word.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F433722E191C719F005DE0A7 /* Word.cpp */; };
 		F4337233191C7200005DE0A7 /* WindowsBitmapHeader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4337231191C7200005DE0A7 /* WindowsBitmapHeader.cpp */; };
 		F4337236191C7662005DE0A7 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4337234191C7662005DE0A7 /* Bitmap.cpp */; };
-		F4337239191C7CA6005DE0A7 /* VerifyEquality.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4337237191C7CA6005DE0A7 /* VerifyEquality.cpp */; };
 		F433723C191C7CE9005DE0A7 /* binary_ostream_iterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F433723A191C7CE9005DE0A7 /* binary_ostream_iterator.cpp */; };
+		F4337241191FDED3005DE0A7 /* RGBColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F433723F191FDED3005DE0A7 /* RGBColor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,10 +55,11 @@
 		F4337232191C7200005DE0A7 /* WindowsBitmapHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsBitmapHeader.h; sourceTree = "<group>"; };
 		F4337234191C7662005DE0A7 /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
 		F4337235191C7662005DE0A7 /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
-		F4337237191C7CA6005DE0A7 /* VerifyEquality.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VerifyEquality.cpp; sourceTree = "<group>"; };
 		F4337238191C7CA6005DE0A7 /* VerifyEquality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyEquality.h; sourceTree = "<group>"; };
 		F433723A191C7CE9005DE0A7 /* binary_ostream_iterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = binary_ostream_iterator.cpp; sourceTree = "<group>"; };
 		F433723B191C7CE9005DE0A7 /* binary_ostream_iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binary_ostream_iterator.h; sourceTree = "<group>"; };
+		F433723F191FDED3005DE0A7 /* RGBColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RGBColor.cpp; sourceTree = "<group>"; };
+		F4337240191FDED3005DE0A7 /* RGBColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBColor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,17 +97,8 @@
 				F4337224191C70E9005DE0A7 /* Tests */,
 				F4337211191C6FD5005DE0A7 /* main.cpp */,
 				F4337213191C6FD5005DE0A7 /* Assignment_3.1 */,
-				F4337228191C7125005DE0A7 /* Byte.cpp */,
-				F4337229191C7125005DE0A7 /* Byte.h */,
-				F433722E191C719F005DE0A7 /* Word.cpp */,
-				F433722F191C719F005DE0A7 /* Word.h */,
-				F433722B191C7150005DE0A7 /* DoubleWord.cpp */,
-				F433722C191C7150005DE0A7 /* DoubleWord.h */,
-				F4337231191C7200005DE0A7 /* WindowsBitmapHeader.cpp */,
-				F4337232191C7200005DE0A7 /* WindowsBitmapHeader.h */,
-				F4337234191C7662005DE0A7 /* Bitmap.cpp */,
-				F4337235191C7662005DE0A7 /* Bitmap.h */,
-				F4337237191C7CA6005DE0A7 /* VerifyEquality.cpp */,
+				F433723E191EF095005DE0A7 /* Binary */,
+				F433723D191EF075005DE0A7 /* BitmapGraphics */,
 				F4337238191C7CA6005DE0A7 /* VerifyEquality.h */,
 				F433723A191C7CE9005DE0A7 /* binary_ostream_iterator.cpp */,
 				F433723B191C7CE9005DE0A7 /* binary_ostream_iterator.h */,
@@ -123,6 +115,32 @@
 				F433721F191C70C4005DE0A7 /* WindowsBitmapHeaderTest.cpp */,
 			);
 			name = Tests;
+			sourceTree = "<group>";
+		};
+		F433723D191EF075005DE0A7 /* BitmapGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				F4337234191C7662005DE0A7 /* Bitmap.cpp */,
+				F4337235191C7662005DE0A7 /* Bitmap.h */,
+				F4337231191C7200005DE0A7 /* WindowsBitmapHeader.cpp */,
+				F4337232191C7200005DE0A7 /* WindowsBitmapHeader.h */,
+				F433723F191FDED3005DE0A7 /* RGBColor.cpp */,
+				F4337240191FDED3005DE0A7 /* RGBColor.h */,
+			);
+			name = BitmapGraphics;
+			sourceTree = "<group>";
+		};
+		F433723E191EF095005DE0A7 /* Binary */ = {
+			isa = PBXGroup;
+			children = (
+				F4337228191C7125005DE0A7 /* Byte.cpp */,
+				F4337229191C7125005DE0A7 /* Byte.h */,
+				F433722E191C719F005DE0A7 /* Word.cpp */,
+				F433722F191C719F005DE0A7 /* Word.h */,
+				F433722B191C7150005DE0A7 /* DoubleWord.cpp */,
+				F433722C191C7150005DE0A7 /* DoubleWord.h */,
+			);
+			name = Binary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,8 +204,8 @@
 				F4337230191C719F005DE0A7 /* Word.cpp in Sources */,
 				F4337233191C7200005DE0A7 /* WindowsBitmapHeader.cpp in Sources */,
 				F4337236191C7662005DE0A7 /* Bitmap.cpp in Sources */,
-				F4337239191C7CA6005DE0A7 /* VerifyEquality.cpp in Sources */,
 				F433723C191C7CE9005DE0A7 /* binary_ostream_iterator.cpp in Sources */,
+				F4337241191FDED3005DE0A7 /* RGBColor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +308,7 @@
 				F4337219191C6FD5005DE0A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

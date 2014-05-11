@@ -7,3 +7,10 @@
 //
 
 #include "WindowsBitmapHeader.h"
+
+namespace BitmapGraphics{
+	Binary::Byte WindowsBitmapHeader::firstIdentifier = 'B';
+	Binary::Byte WindowsBitmapHeader::secondIdentifier = 'M';
+	Binary::DoubleWord WindowsBitmapHeader::reserved = '0';
+	Binary::Word WindowsBitmapHeader::bitsPerPixel = 24;
+}

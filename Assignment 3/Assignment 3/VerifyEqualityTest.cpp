@@ -10,6 +10,7 @@ TEST(verifyEquality, Word)
 
     Binary::Word actual = Binary::Word::readLittleEndian(ss);
     Binary::Word notReallyExpected(0xABCD);
+	bool hasFailed = false;
 
     try
     {
@@ -18,7 +19,9 @@ TEST(verifyEquality, Word)
     }
     catch (const std::exception& e)
     {
-//        std::cout << e.what() << std::endl;
-        CHECK(true);
+        //std::cout << e.what() << std::endl;
+        hasFailed = true;
     }
+	
+	CHECK(hasFailed);
 }

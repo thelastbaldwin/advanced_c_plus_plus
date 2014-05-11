@@ -99,3 +99,25 @@ TEST(readDoubleWordBigEndian, Binary)
     
     CHECK_EQUAL(expected, actual);
 }
+
+TEST(writeDoubleWordBigEndian, Binary)
+{
+	unsigned char carray[] = { 0xb1, 0xb2, 0xb3, 0xb4, 0 };
+	std::stringstream ss(reinterpret_cast<char*>(carray));
+	
+	std::stringstream actual;
+	Binary::DoubleWord dw(0xb1b2b3b4);
+	dw.writeBigEndian(actual);
+	CHECK_EQUAL(ss.str(), actual.str());
+}
+
+TEST(writeDoubleWordLittleEndian, Binary)
+{
+	unsigned char carray[] = { 0xb4, 0xb3, 0xb2, 0xb1, 0 };
+	std::stringstream ss(reinterpret_cast<char*>(carray));
+	
+	std::stringstream actual;
+	Binary::DoubleWord dw(0xb1b2b3b4);
+	dw.writeLittleEndian(actual);
+	CHECK_EQUAL(ss.str(), actual.str());
+}

@@ -26,9 +26,9 @@ namespace BitmapGraphics{
         {
             firstIdentifier.write(destinationStream);
             secondIdentifier.write(destinationStream);
-//            fileSize.writeLittleEndian(destinationStream);
-//            reserved.writeLittleEndian(destinationStream);
-//            rawImageByteOffset.writeLittleEndian(destinationStream);
+            fileSize.writeLittleEndian(destinationStream);
+            reserved.writeLittleEndian(destinationStream);
+            rawImageByteOffset.writeLittleEndian(destinationStream);
         }
     private:
         // file header
@@ -50,6 +50,5 @@ namespace BitmapGraphics{
         static Binary::DoubleWord verticalPixelsPerMeter;
         static Binary::DoubleWord numberOfColors;
         static Binary::DoubleWord numberOfImportantColors;
-	
 	};
 }
