@@ -12,6 +12,7 @@
 #include "Byte.h"
 #include "Word.h"
 #include "DoubleWord.h"
+#include "VerifyEquality.h"
 
 namespace BitmapGraphics{
 	class WindowsBitmapHeader{

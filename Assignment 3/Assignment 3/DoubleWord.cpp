@@ -13,6 +13,16 @@ namespace Binary{
 	DoubleWord::operator uint32_t(){
 		return wrd;
 	}
+    
+    //didn't need to do this with word. why?
+    bool DoubleWord::operator==(const Binary::DoubleWord& other)const{
+        return wrd == other.wrd;
+    }
+    
+    //didn't need to do this with word. why?
+    bool DoubleWord::operator!=(const Binary::DoubleWord& other)const{
+        return !operator==(other);
+    }
 	
 	DoubleWord DoubleWord::read(std::istream &is){
 		#ifdef Little_Endian
@@ -68,7 +78,6 @@ namespace Binary{
 	}
     
     DoubleWord DoubleWord::readNativeOrder(std::istream& is){
-		//little endian
         DoubleWord doubleword;
         Byte *bytes = reinterpret_cast<Byte*>(&doubleword);
         
@@ -91,5 +100,11 @@ namespace Binary{
         bytes[0] = Byte::read(is);
         
         return doubleword;
+    }
+    
+    //didn't need to do this with word. Why?
+    std::ostream& operator<<(std::ostream& os, const Binary::DoubleWord& dw){
+        os << dw.wrd;
+        return os;
     }
 }

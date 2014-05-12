@@ -17,6 +17,9 @@ namespace Binary{
 	public:
 		DoubleWord(uint32_t _wrd = 0);
 		operator uint32_t();
+        
+        bool operator==(const DoubleWord& other)const;
+        bool operator!=(const DoubleWord& other)const;
 		
 		static DoubleWord read(std::istream& is);
 		static DoubleWord readBigEndian(std::istream& is);
@@ -25,6 +28,9 @@ namespace Binary{
 		void write(std::ostream& os) const;
 		void writeLittleEndian(std::ostream& os) const;
 		void writeBigEndian(std::ostream& os) const;
+        
+        friend std::ostream& operator<<(std::ostream& os, const Binary::DoubleWord& dw);
+        
 	private:
 		uint32_t wrd;
 		union uint32_carray {
