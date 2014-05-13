@@ -15,9 +15,9 @@
 namespace BitmapGraphics{
 	class RGBColor{
 	public:
-        RGBColor(const Binary::Byte& blue,
-                 const Binary::Byte& green,
-                 const Binary::Byte& red);
+        RGBColor(const Binary::Byte& red,
+                 const Binary::Byte& gree,
+                 const Binary::Byte& blue);
 	private:
 		Binary::Byte red;
 		Binary::Byte green;
