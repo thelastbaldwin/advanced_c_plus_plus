@@ -17,6 +17,8 @@
 namespace BitmapGraphics{
 	class WindowsBitmapHeader{
 	public:
+        WindowsBitmapHeader();
+        WindowsBitmapHeader(std::istream& inputStream);
 		int getFileSize();
 		void readInfoHeader(std::istream& inputStream);
 		void readFileHeader(std::istream& inputStream);
@@ -46,9 +48,9 @@ namespace BitmapGraphics{
         static Binary::Word numberOfPlanes;
         static Binary::Word bitsPerPixel;
         static Binary::DoubleWord compressionType;
-        static Binary::DoubleWord compressedImageSize;
-        static Binary::DoubleWord horizontalPixelsPerMeter;
-        static Binary::DoubleWord verticalPixelsPerMeter;
+        Binary::DoubleWord compressedImageSize;
+        Binary::DoubleWord horizontalPixelsPerMeter;
+        Binary::DoubleWord verticalPixelsPerMeter;
         static Binary::DoubleWord numberOfColors;
         static Binary::DoubleWord numberOfImportantColors;
 	};

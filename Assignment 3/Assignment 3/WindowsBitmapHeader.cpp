@@ -10,19 +10,32 @@
 
 namespace BitmapGraphics{
     //static constants
+    //file header
 	Binary::Byte WindowsBitmapHeader::firstIdentifier = 'B';
 	Binary::Byte WindowsBitmapHeader::secondIdentifier = 'M';
 	Binary::DoubleWord WindowsBitmapHeader::reserved = 0;
     Binary::DoubleWord WindowsBitmapHeader::rawImageByteOffset = 54; //14 + 40
     
+    //info header
+    Binary::DoubleWord WindowsBitmapHeader::infoHeaderBytes = 40;
     Binary::Word WindowsBitmapHeader::bitsPerPixel = 24;
+    Binary::Word WindowsBitmapHeader::numberOfPlanes = 1;
+    Binary::DoubleWord WindowsBitmapHeader::compressionType = 0;
+    Binary::DoubleWord WindowsBitmapHeader::numberOfColors = 0;
+    Binary::DoubleWord WindowsBitmapHeader::numberOfImportantColors = 2425356288; //WTF is this number? Should be 0
+    
+    WindowsBitmapHeader::WindowsBitmapHeader(){};
+    
+    WindowsBitmapHeader::WindowsBitmapHeader(std::istream& inputStream){
+        readFileHeader(inputStream);
+        readInfoHeader(inputStream);
+    };
+    
+    int WindowsBitmapHeader::getFileSize(){
+        return static_cast<int>(fileSize);
+    };
     
     void WindowsBitmapHeader::readFileHeader(std::istream& inputStream){
-        //firstIdentifier
-        //secondIdentifier
-        //fileSize
-        //reserved
-        //rawImageByteOffest
         verifyEquality(firstIdentifier, Binary::Byte::read(inputStream), "firstIdentifier");
         verifyEquality(secondIdentifier, Binary::Byte::read(inputStream), "secondIdentifier");
         fileSize = Binary::DoubleWord::readLittleEndian(inputStream);
@@ -31,16 +44,25 @@ namespace BitmapGraphics{
     }
     
     void WindowsBitmapHeader::readInfoHeader(std::istream &inputStream){
-        //infoHeaderBytes DW = 40
-        //bitmapWidth DW
-        //bitmapHeight DW
-        //numberOfPlanes W = 1
-        //bitsPerPixel W = 24
-        //compressionType DW
-        //compressedImageSize DW
-        //horizontalPixelsPerMeter DW = N/A?
-        //verticalPizelsPerMter DW = N/A?
-        //numberOfColors DW = 0
-        //numberofImportantColors DW = 0
+        verifyEquality(infoHeaderBytes, Binary::DoubleWord::readLittleEndian(inputStream), "infoHeaderBytes");
+        bitmapWidth = Binary::DoubleWord::readLittleEndian(inputStream);
+        bitmapHeight = Binary::DoubleWord::readLittleEndian(inputStream);
+        verifyEquality(numberOfPlanes, Binary::Word::readLittleEndian(inputStream), "numberOfPlanes");
+        verifyEquality(bitsPerPixel, Binary::Word::readLittleEndian(inputStream), "bitsPerPixel");
+        verifyEquality(compressionType, Binary::DoubleWord::readLittleEndian(inputStream), "compressionType");
+        compressedImageSize = fileSize - rawImageByteOffset;
+        verifyEquality(compressedImageSize, Binary::DoubleWord::readLittleEndian(inputStream), "compressedImageSize");
+        horizontalPixelsPerMeter = Binary::DoubleWord::readLittleEndian(inputStream);
+        verticalPixelsPerMeter = Binary::DoubleWord::readLittleEndian(inputStream);
+        verifyEquality(numberOfColors, Binary::DoubleWord::readLittleEndian(inputStream), "numberOfColors");
+        verifyEquality(numberOfImportantColors, Binary::DoubleWord::readLittleEndian(inputStream), "numberOfImportantColors");
+    }
+    
+    int WindowsBitmapHeader::getBitmapHeight(){
+        return static_cast<int>(bitmapHeight);
+    }
+    
+    int WindowsBitmapHeader::getBitmapWidth(){
+        return static_cast<int>(bitmapWidth);
     }
 }
