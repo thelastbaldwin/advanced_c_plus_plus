@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "Byte.h"
 #include <iostream>
 
 namespace BitmapGraphics{
