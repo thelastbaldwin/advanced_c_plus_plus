@@ -16,7 +16,7 @@ namespace Binary{
 		Byte(const unsigned char& _ch = 0);
 		operator unsigned char() const;
 		static Byte read(std::istream& is);
-		void write(std::ostream& os);
+		void write(std::ostream& os) const;
 	private:
 		unsigned char ch;
 	};

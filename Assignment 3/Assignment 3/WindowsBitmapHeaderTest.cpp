@@ -4,9 +4,14 @@
 
 using namespace BitmapGraphics;
 
+//personal laptop
+const std::string PROJECTPATH="/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 3/";
+//work
+//const std::string PROJECTPATH="/Users/wcb6/Documents/Personal/advanced_c_plus_plus/Assignment 3/";
+
 TEST(FileHeaderTest, WindowsBitmapHeader)
 {
-    std::ifstream bitmapStream("/Users/wcb6/Documents/Personal/advanced_c_plus_plus/Assignment 3/basic.bmp", std::ios::binary);
+    std::ifstream bitmapStream(PROJECTPATH + "basic.bmp", std::ios::binary);
     CHECK(bitmapStream.is_open());
     
     WindowsBitmapHeader bitmapHeader;
@@ -28,7 +33,21 @@ TEST(FileHeaderTest, WindowsBitmapHeader)
 
 TEST(InfoHeaderTest, WindowBitmapHeader)
 {
-    std::ifstream bitmapStream("/Users/wcb6/Documents/Personal/advanced_c_plus_plus/Assignment 3/basic.bmp", std::ios::binary);
+    std::ifstream bitmapStream(PROJECTPATH + "steve_test.bmp", std::ios::binary);
+    CHECK(bitmapStream.is_open());
+    
+    WindowsBitmapHeader bitmapHeader;
+    bitmapHeader.readFileHeader(bitmapStream);
+    bitmapHeader.readInfoHeader(bitmapStream);
+	
+    CHECK_EQUAL(200, bitmapHeader.getBitmapHeight());
+    CHECK_EQUAL(200, bitmapHeader.getBitmapWidth());
+}
+
+
+TEST(InfoHeaderTest2, WindowBitmapHeader)
+{
+    std::ifstream bitmapStream(PROJECTPATH + "basic.bmp", std::ios::binary);
     CHECK(bitmapStream.is_open());
     
     WindowsBitmapHeader bitmapHeader;
@@ -43,7 +62,7 @@ TEST(InfoHeaderTest, WindowBitmapHeader)
 
 TEST(FileHeaderTest_101, WindowsBitmapHeader)
 {
-    std::ifstream bitmapStream("/Users/wcb6/Documents/Personal/advanced_c_plus_plus/Assignment 3/basic_101.bmp", std::ios::binary);
+    std::ifstream bitmapStream(PROJECTPATH + "basic_101.bmp", std::ios::binary);
     CHECK(bitmapStream.is_open());
     
     WindowsBitmapHeader bitmapHeader;
@@ -55,7 +74,7 @@ TEST(FileHeaderTest_101, WindowsBitmapHeader)
 
 TEST(InfoHeaderTest_101, WindowBitmapHeader)
 {
-    std::ifstream bitmapStream("/Users/wcb6/Documents/Personal/advanced_c_plus_plus/Assignment 3/basic_101.bmp", std::ios::binary);
+    std::ifstream bitmapStream(PROJECTPATH + "basic_101.bmp", std::ios::binary);
     CHECK(bitmapStream.is_open());
     
     WindowsBitmapHeader bitmapHeader;
@@ -68,7 +87,7 @@ TEST(InfoHeaderTest_101, WindowBitmapHeader)
 
 TEST(constructHeaderFromStream, WindowsBitmapHeader)
 {
-    std::ifstream bitmapStream("/Users/wcb6/Documents/Personal/advanced_c_plus_plus/Assignment 3/basic.bmp", std::ios::binary);
+    std::ifstream bitmapStream(PROJECTPATH + "basic.bmp", std::ios::binary);
     CHECK(bitmapStream.is_open());
     
     // I created a constructor that automatically reads the entire header from a stream
@@ -81,7 +100,7 @@ TEST(constructHeaderFromStream, WindowsBitmapHeader)
 
 TEST(constructHeaderFromStream_101, WindowsBitmapHeader)
 {
-    std::ifstream bitmapStream("/Users/wcb6/Documents/Personal/advanced_c_plus_plus/Assignment 3/basic_101.bmp", std::ios::binary);
+    std::ifstream bitmapStream(PROJECTPATH + "basic_101.bmp", std::ios::binary);
     CHECK(bitmapStream.is_open());
     
     WindowsBitmapHeader bitmapHeader(bitmapStream);

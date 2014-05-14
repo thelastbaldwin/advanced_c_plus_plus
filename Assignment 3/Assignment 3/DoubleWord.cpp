@@ -10,7 +10,7 @@
 
 namespace Binary{
 	DoubleWord::DoubleWord(uint32_t _wrd):wrd(_wrd){};
-	DoubleWord::operator uint32_t(){
+	DoubleWord::operator uint32_t() const{
 		return wrd;
 	}
     

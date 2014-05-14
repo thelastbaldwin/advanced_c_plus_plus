@@ -48,9 +48,9 @@ namespace BitmapGraphics{
         static Binary::Word numberOfPlanes;
         static Binary::Word bitsPerPixel;
         static Binary::DoubleWord compressionType;
-        Binary::DoubleWord compressedImageSize;
-        Binary::DoubleWord horizontalPixelsPerMeter;
-        Binary::DoubleWord verticalPixelsPerMeter;
+		static Binary::DoubleWord compressedImageSize;
+        static Binary::DoubleWord horizontalPixelsPerMeter;
+        static Binary::DoubleWord verticalPixelsPerMeter;
         static Binary::DoubleWord numberOfColors;
         static Binary::DoubleWord numberOfImportantColors;
 	};

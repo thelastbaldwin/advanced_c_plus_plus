@@ -16,7 +16,7 @@ namespace Binary{
 	class DoubleWord{
 	public:
 		DoubleWord(uint32_t _wrd = 0);
-		operator uint32_t();
+		operator uint32_t() const;
         
         bool operator==(const DoubleWord& other)const;
         bool operator!=(const DoubleWord& other)const;

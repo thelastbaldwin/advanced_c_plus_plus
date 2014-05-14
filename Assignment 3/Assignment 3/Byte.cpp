@@ -22,7 +22,7 @@ namespace Binary{
 		return Byte(ch);
 	}
 	
-	void Byte::write(std::ostream& os){
+	void Byte::write(std::ostream& os) const{
 		os << ch;
 	}
 

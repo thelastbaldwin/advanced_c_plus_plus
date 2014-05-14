@@ -21,6 +21,7 @@
 		F4337236191C7662005DE0A7 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4337234191C7662005DE0A7 /* Bitmap.cpp */; };
 		F433723C191C7CE9005DE0A7 /* binary_ostream_iterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F433723A191C7CE9005DE0A7 /* binary_ostream_iterator.cpp */; };
 		F4337241191FDED3005DE0A7 /* RGBColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F433723F191FDED3005DE0A7 /* RGBColor.cpp */; };
+		F433724319230780005DE0A7 /* RGBColorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F43372421923077F005DE0A7 /* RGBColorTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +61,7 @@
 		F433723B191C7CE9005DE0A7 /* binary_ostream_iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binary_ostream_iterator.h; sourceTree = "<group>"; };
 		F433723F191FDED3005DE0A7 /* RGBColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RGBColor.cpp; sourceTree = "<group>"; };
 		F4337240191FDED3005DE0A7 /* RGBColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBColor.h; sourceTree = "<group>"; };
+		F43372421923077F005DE0A7 /* RGBColorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RGBColorTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				F433721D191C70C4005DE0A7 /* BitmapTest.cpp */,
 				F433721E191C70C4005DE0A7 /* VerifyEqualityTest.cpp */,
 				F433721F191C70C4005DE0A7 /* WindowsBitmapHeaderTest.cpp */,
+				F43372421923077F005DE0A7 /* RGBColorTest.cpp */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				F4337236191C7662005DE0A7 /* Bitmap.cpp in Sources */,
 				F433723C191C7CE9005DE0A7 /* binary_ostream_iterator.cpp in Sources */,
 				F4337241191FDED3005DE0A7 /* RGBColor.cpp in Sources */,
+				F433724319230780005DE0A7 /* RGBColorTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

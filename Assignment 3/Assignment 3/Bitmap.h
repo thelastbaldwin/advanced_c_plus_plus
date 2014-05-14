@@ -8,11 +8,20 @@
 
 #pragma once
 
-#include "Byte.h"
+#include "RGBColor.h"
 #include <iostream>
+#include <vector>
 
 namespace BitmapGraphics{
 	class Bitmap{
+	public:
+		typedef std::vector<RGBColor> ScanLine;
+		typedef std::vector<ScanLine> ScanLineCollection;
 		
+		Bitmap (int _width, int _height, std::istream& sourceStream);
+		
+		const int getWidth() const;
+		const int getHeight() const;
+
 	};
 }

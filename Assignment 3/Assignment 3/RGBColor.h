@@ -15,14 +15,25 @@
 namespace BitmapGraphics{
 	class RGBColor{
 	public:
-        RGBColor(const Binary::Byte& red,
-                 const Binary::Byte& gree,
-                 const Binary::Byte& blue);
+        explicit RGBColor(const Binary::Byte& _red = 0,
+                 const Binary::Byte& _green = 0,
+                 const Binary::Byte& _blue = 0);
+		
+		Binary::Byte getRed() const;
+        Binary::Byte getGreen() const;
+        Binary::Byte getBlue() const;
+        
+        static RGBColor read(std::istream& sourceStream);
+        void write(std::ostream& destinationStream) const;
+        
+        bool operator==(const RGBColor& rhs) const;
 	private:
 		Binary::Byte red;
 		Binary::Byte green;
 		Binary::Byte blue;
 	};
 }
+
+std::ostream& operator<<(std::ostream& os, const BitmapGraphics::RGBColor& rhs);
 
 #endif /* defined(__Assignment_3__RGBColor__) */
