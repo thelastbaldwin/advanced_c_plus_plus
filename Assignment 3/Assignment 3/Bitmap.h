@@ -9,7 +9,7 @@
 #pragma once
 
 #include "RGBColor.h"
-#include <iostream>
+#include <iosfwd>
 #include <vector>
 
 namespace BitmapGraphics{
@@ -17,11 +17,21 @@ namespace BitmapGraphics{
 	public:
 		typedef std::vector<RGBColor> ScanLine;
 		typedef std::vector<ScanLine> ScanLineCollection;
+		typedef ScanLineCollection::iterator ScanLineIterator;
 		
 		Bitmap (int _width, int _height, std::istream& sourceStream);
 		
 		const int getWidth() const;
 		const int getHeight() const;
-
+		
+		ScanLineIterator begin();
+		ScanLineIterator end();
+	
+		void readScanLines(std::istream& sourceStream);
+		void write(std::ostream& destinationStream) const;
+	private:
+		int width;
+		int height;
+				ScanLineCollection scanLines;
 	};
 }

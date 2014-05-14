@@ -6,74 +6,79 @@
 
 using namespace BitmapGraphics;
 
-//TEST(BitmapSizeTest, Bitmap)
-//{
-//    std::ifstream bitmapStream("basic.bmp", std::ios::binary);
-//    CHECK(bitmapStream.is_open());
-//    
-//    WindowsBitmapHeader bitmapHeader(bitmapStream);
-//    Bitmap bitmap(bitmapHeader.getBitmapWidth(), bitmapHeader.getBitmapHeight(), bitmapStream);
-//
-//    CHECK_EQUAL(100, bitmap.getWidth());
-//    CHECK_EQUAL(100, bitmap.getHeight());
-//}
-//
-//TEST(BitmapScanLinesTest, Bitmap)
-//{
-//    std::ifstream bitmapStream("basic.bmp", std::ios::binary);
-//    CHECK(bitmapStream.is_open());
-//    
-//    WindowsBitmapHeader bitmapHeader(bitmapStream);
-//    Bitmap bitmap(bitmapHeader.getBitmapWidth(), bitmapHeader.getBitmapHeight(), bitmapStream);
-//
-//    // Before C++11 the loop below looked like this:
-//    //    for (Bitmap::ScanLineIterator scanLine = bitmap.begin(); scanLine != bitmap.end(); ++scanLine)
-//    
-//    int numberOfScanLines = 0;
-//    for (auto& scanLine : bitmap)
-//    {
-//        CHECK_EQUAL(100, scanLine.size());
-//        ++numberOfScanLines;
-//    }
-//    CHECK_EQUAL(100, numberOfScanLines);
-//}
-//
-//TEST(BitmapReadWrite, Bitmap)
-//{
-//    // Read in the bitmap
-//    
-//    std::ifstream bitmapStream("basic.bmp", std::ios::binary);
-//    CHECK(bitmapStream.is_open());
-//    
-//    WindowsBitmapHeader bitmapHeader(bitmapStream);
-//    
-//    Bitmap bitmap(bitmapHeader.getBitmapWidth(), bitmapHeader.getBitmapHeight(), bitmapStream);
-//
-//    // Write out the bitmap to a different file with its write() method
-//    
-//    std::ofstream outputStream("output.bmp", std::ios::binary);
-//    CHECK(outputStream.is_open());
-//    
-//    bitmapHeader.write(outputStream);
-//    bitmap.write(outputStream);
-//    outputStream.close();
-//
-//    // Read that one back in and check sizes
-//    
-//    std::ifstream bitmapStream2("output.bmp", std::ios::binary);
-//    CHECK(bitmapStream2.is_open());
-//    
-//    WindowsBitmapHeader bitmapHeader2(bitmapStream2);
-//    Bitmap bitmap2(bitmapHeader2.getBitmapWidth(), bitmapHeader2.getBitmapHeight(), bitmapStream2);
-//
-//    int numberOfScanLines = 0;
-//    for (auto& scanLine : bitmap2)
-//    {
-//        CHECK_EQUAL(100, scanLine.size());
-//        ++numberOfScanLines;
-//    }
-//    CHECK_EQUAL(100, numberOfScanLines);
-//}
+//personal laptop
+const std::string PROJECTPATH="/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 3/";
+//work
+//const std::string PROJECTPATH="/Users/wcb6/Documents/Personal/advanced_c_plus_plus/Assignment 3/";
+
+TEST(BitmapSizeTest, Bitmap)
+{
+    std::ifstream bitmapStream(PROJECTPATH + "basic.bmp", std::ios::binary);
+    CHECK(bitmapStream.is_open());
+    
+    WindowsBitmapHeader bitmapHeader(bitmapStream);
+    Bitmap bitmap(bitmapHeader.getBitmapWidth(), bitmapHeader.getBitmapHeight(), bitmapStream);
+
+    CHECK_EQUAL(100, bitmap.getWidth());
+    CHECK_EQUAL(100, bitmap.getHeight());
+}
+
+TEST(BitmapScanLinesTest, Bitmap)
+{
+    std::ifstream bitmapStream(PROJECTPATH + "basic.bmp", std::ios::binary);
+    CHECK(bitmapStream.is_open());
+    
+    WindowsBitmapHeader bitmapHeader(bitmapStream);
+    Bitmap bitmap(bitmapHeader.getBitmapWidth(), bitmapHeader.getBitmapHeight(), bitmapStream);
+
+    // Before C++11 the loop below looked like this:
+    //    for (Bitmap::ScanLineIterator scanLine = bitmap.begin(); scanLine != bitmap.end(); ++scanLine)
+    
+    int numberOfScanLines = 0;
+    for (auto& scanLine : bitmap)
+    {
+        CHECK_EQUAL(100, scanLine.size());
+        ++numberOfScanLines;
+    }
+    CHECK_EQUAL(100, numberOfScanLines);
+}
+
+TEST(BitmapReadWrite, Bitmap)
+{
+    // Read in the bitmap
+    
+    std::ifstream bitmapStream(PROJECTPATH + "basic.bmp", std::ios::binary);
+    CHECK(bitmapStream.is_open());
+    
+    WindowsBitmapHeader bitmapHeader(bitmapStream);
+    
+    Bitmap bitmap(bitmapHeader.getBitmapWidth(), bitmapHeader.getBitmapHeight(), bitmapStream);
+
+    // Write out the bitmap to a different file with its write() method
+    
+    std::ofstream outputStream(PROJECTPATH + "output.bmp", std::ios::binary);
+    CHECK(outputStream.is_open());
+    
+    bitmapHeader.write(outputStream);
+    bitmap.write(outputStream);
+    outputStream.close();
+
+    // Read that one back in and check sizes
+    
+    std::ifstream bitmapStream2(PROJECTPATH + "output.bmp", std::ios::binary);
+    CHECK(bitmapStream2.is_open());
+    
+    WindowsBitmapHeader bitmapHeader2(bitmapStream2);
+    Bitmap bitmap2(bitmapHeader2.getBitmapWidth(), bitmapHeader2.getBitmapHeight(), bitmapStream2);
+
+    int numberOfScanLines = 0;
+    for (auto& scanLine : bitmap2)
+    {
+        CHECK_EQUAL(100, scanLine.size());
+        ++numberOfScanLines;
+    }
+    CHECK_EQUAL(100, numberOfScanLines);
+}
 //
 //TEST(BinaryOstreamIterator, Bitmap)
 //{

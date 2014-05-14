@@ -9,7 +9,6 @@
 #pragma once
 
 #include <cstdint>
-#include <iosfwd>
 #include "Byte.h"
 
 namespace Binary{

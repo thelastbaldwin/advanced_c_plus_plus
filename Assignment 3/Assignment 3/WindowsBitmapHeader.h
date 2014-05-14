@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include <iostream>
-#include "Byte.h"
 #include "Word.h"
 #include "DoubleWord.h"
 #include "VerifyEquality.h"
@@ -25,14 +23,9 @@ namespace BitmapGraphics{
 		int getBitmapHeight();
 		int getBitmapWidth();
         
-        void writeFileHeader(std::ostream& destinationStream) const
-        {
-            firstIdentifier.write(destinationStream);
-            secondIdentifier.write(destinationStream);
-            fileSize.writeLittleEndian(destinationStream);
-            reserved.writeLittleEndian(destinationStream);
-            rawImageByteOffset.writeLittleEndian(destinationStream);
-        }
+		void write(std::ostream& destinationStream) const;
+        void writeFileHeader(std::ostream& destinationStream) const;
+		void writeInfoHeader(std::ostream& destinationStream) const;
     private:
         // file header
         static Binary::Byte firstIdentifier;

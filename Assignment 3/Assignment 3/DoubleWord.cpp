@@ -10,26 +10,10 @@
 
 namespace Binary{
 	DoubleWord::DoubleWord(uint32_t _wrd):wrd(_wrd){};
+	
 	DoubleWord::operator uint32_t() const{
 		return wrd;
 	}
-    
-    //didn't need to do this with word. why?
-    bool DoubleWord::operator==(const Binary::DoubleWord& other)const{
-        return wrd == other.wrd;
-    }
-    
-    //didn't need to do this with word. why?
-    bool DoubleWord::operator!=(const Binary::DoubleWord& other)const{
-        return !operator==(other);
-    }
-	
-	DoubleWord DoubleWord::read(std::istream &is){
-		#ifdef Little_Endian
-			return readNativeOrder(is);
-		#endif
-			return readSwappedOrder(is);
-    }
 	   
     DoubleWord DoubleWord::readBigEndian(std::istream &is){
         return readSwappedOrder(is);
@@ -39,42 +23,34 @@ namespace Binary{
         return readNativeOrder(is);
     }
 	
-	void DoubleWord::writeNativeOrder(std::ostream& os, const union uint32_carray& convert) const{
+	void DoubleWord::writeNativeOrder(std::ostream& os) const{
 		//little Endian
+		union uint32_carray convert;
+		convert.intVal = wrd;
+		
 		os	<<	convert.carray[0]
 			<<	convert.carray[1]
 			<<	convert.carray[2]
 			<<	convert.carray[3];
 	}
 	
-	void DoubleWord::writeSwappedOrder(std::ostream& os, const union uint32_carray& convert) const{
+	void DoubleWord::writeSwappedOrder(std::ostream& os) const{
 		//big Endian
+		union uint32_carray convert;
+		convert.intVal = wrd;
+		
 		os	<<	convert.carray[3]
 			<<	convert.carray[2]
 			<<	convert.carray[1]
 			<<	convert.carray[0];
 	}
 	
-	void DoubleWord::write(std::ostream& os) const{
-		union uint32_carray convert;
-		convert.intVal = wrd;
-		#ifdef Little_Endian
-			writeNativeOrder(os, convert);
-		#else
-			writeSwappedOrder(os, convert);
-		#endif
-	}
-	
 	void DoubleWord::writeLittleEndian(std::ostream &os) const{
-		union uint32_carray convert;
-		convert.intVal = wrd;
-		writeNativeOrder(os, convert);
+		writeNativeOrder(os);
 	}
 	
 	void DoubleWord::writeBigEndian(std::ostream &os) const{
-		union uint32_carray convert;
-		convert.intVal = wrd;
-		writeSwappedOrder(os, convert);
+		writeSwappedOrder(os);
 	}
     
     DoubleWord DoubleWord::readNativeOrder(std::istream& is){
@@ -100,11 +76,5 @@ namespace Binary{
         bytes[0] = Byte::read(is);
         
         return doubleword;
-    }
-    
-    //didn't need to do this with word. Why?
-    std::ostream& operator<<(std::ostream& os, const Binary::DoubleWord& dw){
-        os << dw.wrd;
-        return os;
     }
 }
