@@ -1,6 +1,10 @@
 #include "TestHarness.h"
 #include "RangedNumber.h"
 
+extern const std::string PROJECT_PATH;
+
+//stringification
+#define STR(s) #s
 
 TEST(cTor, ranged_number)
 {

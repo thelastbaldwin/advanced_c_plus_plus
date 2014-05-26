@@ -14,7 +14,6 @@
 
 int main(int argc, const char * argv[])
 {
-	
 	TestResult tr;
     TestRegistry::runAllTests(tr);
     return 0;
