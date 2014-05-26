@@ -7,3 +7,17 @@
 //
 
 #include "WindowsBitmapEncoder.h"
+
+namespace BitmapGraphics {
+	HBitmapEncoder WindowsBitmapEncoder::clone(){
+	
+	};
+	
+	void WindowsBitmapEncoder::encodeToStream(){
+		//WindowsBitmapHeader.write(stream)
+		//WindowsBitmap.write(stream)
+		//Do this last part with bitmap iterators? Do the whole thing with them?
+	};
+	
+	
+}
