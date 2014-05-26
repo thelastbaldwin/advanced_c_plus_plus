@@ -1,6 +1,8 @@
 #include "DoubleWord.h"
 #include <iostream>
 
+#define Little_Endian_
+
 namespace Binary
 {
     union DoubleWordValue

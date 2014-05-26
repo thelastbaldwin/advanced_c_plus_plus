@@ -9,7 +9,7 @@
 #include "WindowsBitmapEncoder.h"
 
 namespace BitmapGraphics {
-	HBitmapEncoder WindowsBitmapEncoder::clone(){
+	HBitmapEncoder WindowsBitmapEncoder::clone(std::istream& sourceStream){
 	
 	};
 	
@@ -19,5 +19,8 @@ namespace BitmapGraphics {
 		//Do this last part with bitmap iterators? Do the whole thing with them?
 	};
 	
-	
+	std::string WindowsBitmapEncoder::getMimeType() const
+    {
+        return WindowsBitmapMimeType;
+    }	
 }
