@@ -6,8 +6,14 @@
 
 namespace BitmapGraphics{
 	class WindowsBitmapEncoder: public IBitmapEncoder{
-		HBitmapEncoder clone(std::istream& sourceStream);
-		void encodeToStream();
+	public:
+		WindowsBitmapEncoder();
+		
+		HBitmapEncoder clone(HBitmapIterator& bitmapIter);
+		void encodeToStream(std::ostream& sourceStream);
 		std::string getMimeType() const;
+	private:
+		WindowsBitmapEncoder(HBitmapIterator& bitmapIterator);
+		HBitmap myBitmap;
 	};
 }

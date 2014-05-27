@@ -79,17 +79,18 @@ TEST(BitmapReadWrite, Bitmap)
     CHECK(outputStream.is_open());
     
     WindowsBitmapEncoder bmEncoder;
-	HBitmapEncoder encoder = bmEncoder.clone(outputStream);
-    encoder.encodeToStream(outputStream);
+	HBitmapEncoder encoder = bmEncoder.clone(bitmapIter);
+    encoder->encodeToStream(outputStream);
     outputStream.close();
 	
     // Read that one back in and check sizes
     
-    std::ifstream bitmapStream2("output.bmp", std::ios::binary);
+    std::ifstream bitmapStream2(PROJECT_PATH + "output.bmp", std::ios::binary);
     CHECK(bitmapStream2.is_open());
     
-    WindowsBitmapDecoder decoder2(bitmapStream2);
-    bitmapIter = decoder2.createIterator();
+	
+    HBitmapDecoder decoder2 = bmDecoder.clone(bitmapStream2);
+    bitmapIter = decoder2->createIterator();
     
     int numberOfScanLines = 0;
     while (! bitmapIter->isEndOfImage())

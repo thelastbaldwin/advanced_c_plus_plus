@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Steve Minor. All rights reserved.
 //
 
-#ifndef __Assignment_4__RangedNumber__
-#define __Assignment_4__RangedNumber__
+#pragma once
 
 #include <iostream>
 
@@ -106,6 +105,3 @@ std::ostream& operator<<(std::ostream& os, const ranged_number<Number, lowerLimi
 	os << rhs.getNumber();
 	return os;
 }
-	
-
-#endif /* defined(__Assignment_4__RangedNumber__) */

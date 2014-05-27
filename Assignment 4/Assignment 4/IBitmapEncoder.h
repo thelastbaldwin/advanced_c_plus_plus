@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "IBitmapIterator.h"
+#include "IBitmapIterator.h"
 #include <iostream>
 #include <memory>
 #include <string>
@@ -16,9 +16,9 @@ namespace BitmapGraphics
     public:
         virtual ~IBitmapEncoder() { }
         
-        virtual HBitmapEncoder clone(std::istream& sourceStream) = 0;
+        virtual HBitmapEncoder clone(HBitmapIterator& bitmapIter) = 0;
         
-        virtual void EncodeToStream() = 0;
+        virtual void encodeToStream(std::ostream& sourceStream) = 0;
         
         virtual std::string getMimeType() const = 0;
     };

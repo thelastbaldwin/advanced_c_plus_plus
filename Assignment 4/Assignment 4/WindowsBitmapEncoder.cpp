@@ -9,13 +9,21 @@
 #include "WindowsBitmapEncoder.h"
 
 namespace BitmapGraphics {
-	HBitmapEncoder WindowsBitmapEncoder::clone(std::istream& sourceStream){
+	WindowsBitmapEncoder::WindowsBitmapEncoder(){
+	
+	}
+	
+	WindowsBitmapEncoder::WindowsBitmapEncoder(HBitmapIterator& bitmapIterator){
 	
 	};
 	
-	void WindowsBitmapEncoder::encodeToStream(){
-		//WindowsBitmapHeader.write(stream)
-		//WindowsBitmap.write(stream)
+	HBitmapEncoder WindowsBitmapEncoder::clone(HBitmapIterator& bitmapIter){
+		WindowsBitmapEncoder encoder(bitmapIter);
+	};
+	
+	void WindowsBitmapEncoder::encodeToStream(std::ostream& sourceStream){
+		//WindowsBitmapHeader.write(mySourceStream)
+		//WindowsBitmap.write(mySourceStream)
 		//Do this last part with bitmap iterators? Do the whole thing with them?
 	};
 	
