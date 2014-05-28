@@ -8,7 +8,7 @@ namespace BitmapGraphics
     class Color
     {
     public:
-        explicit Color(const Binary::Byte& red = 0,
+        Color(const Binary::Byte& red = 0,
                        const Binary::Byte& green = 0,
                        const Binary::Byte& blue = 0);
         

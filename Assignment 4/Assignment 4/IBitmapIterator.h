@@ -1,12 +1,11 @@
 #pragma once
 
 #include <memory>
+#include "Color.h"
+#include "RangedNumber.h"
 
 namespace BitmapGraphics
-{
-    
-    class Color;
-    
+{    
     class IBitmapIterator
     {
     public:

@@ -8,14 +8,12 @@
 
 #pragma once
 
+#include "Byte.h"
 #include <iostream>
 
-template <class Number, Number lowerLimit, Number upperLimit>
+template <typename Number, Number lowerLimit, Number upperLimit>
 class ranged_number {
 public:
-	// operators and methods to make the class behave
-	// just like an actual number, with the addition of
-	// restricting the range	
 	ranged_number(const Number n=0):number(n){
 		checkBounds();
 	};
@@ -31,28 +29,16 @@ public:
 		return *this;
 	}
 	
+	operator Number(){ checkBounds(); return number;}
+	
+	operator Binary::Byte(){ checkBounds(); return Binary::Byte(number);}
+	
 	ranged_number& operator=(const Number& other){
 		number = other;
 		checkBounds();
 		return *this;
 	}
 
-	friend bool operator ==(const ranged_number<Number, lowerLimit, upperLimit>& lhs, const Number& rhs){ return lhs.getNumber() == rhs; };
-	friend bool operator !=(const ranged_number<Number, lowerLimit, upperLimit>& lhs, const Number& rhs){ return lhs.getNumber() != rhs; };
-	friend bool operator ==(const Number& lhs, const ranged_number<Number, lowerLimit, upperLimit>& rhs){ return lhs == rhs.getNumber(); };
-	friend bool operator !=(const Number& lhs, const ranged_number<Number, lowerLimit, upperLimit>& rhs){ return lhs != rhs.getNumber(); };
-	
-	ranged_number& operator+(const Number& other){
-		number = number + other;
-		checkBounds();
-		return *this;
-	}
-	ranged_number& operator-(const Number& other){
-		number = number - other;
-		checkBounds();
-		return *this;
-	}
-	
 	ranged_number& operator+=(const Number& rhs){
 		number += rhs;
 		checkBounds();

@@ -1,8 +1,8 @@
 #include "TestHarness.h"
 #include "Project.h"
 #include "CodecLibrary.h"
-//#include "BrightnessDecorator.h"
-//#include "ColorInversionDecorator.h"
+#include "BrightnessDecorator.h"
+#include "ColorInversionDecorator.h"
 #include "WindowsBitmapDecoder.h"
 #include "WindowsBitmapEncoder.h"
 #include "BitmapIterator.h"
@@ -165,77 +165,74 @@ TEST(windowsBitmapDecodeEncode, CodecLibrary)
 	
     tearDown();
 }
-//
-//TEST(brightnessDecoratorIterator, CodecLibrary)
-//{
-//    setUp();
-//	
-//    std::ifstream inFile("basic.bmp", std::ios::binary);
-//    CHECK_EQUAL(0, !inFile);
-//    
-//    HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
-//    HBitmapIterator iterator = decoder->createIterator();
-//    
-//    CHECK(iterator.get());
-//    CHECK_EQUAL(100, iterator->getBitmapHeight());
-//    CHECK_EQUAL(100, iterator->getBitmapWidth());
-//	
-//    HBitmapIterator brightnessIterator(new BrightnessDecorator(iterator, 80));
-//    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, brightnessIterator);
-//	
-//    std::ofstream outFile("output_basicBrightnessAdjusted.bmp", std::ios::binary);
-//    encoder->encodeToStream(outFile);
-//    // TODO: file compare input/output
-//	
-//    tearDown();
-//}
-//
-//TEST(colorInvertDecoratorIterator, CodecLibrary)
-//{
-//    setUp();
-//	
-//    std::ifstream inFile("basic.bmp", std::ios::binary);
-//    CHECK_EQUAL(0, !inFile);
-//    
-//    HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
-//    HBitmapIterator iterator = decoder->createIterator();
-//    
-//    CHECK(iterator.get());
-//    CHECK_EQUAL(100, iterator->getBitmapHeight());
-//    CHECK_EQUAL(100, iterator->getBitmapWidth());
-//	
-//    HBitmapIterator colorInvertIterator(new ColorInversionDecorator(iterator));
-//    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, colorInvertIterator);
-//	
-//    std::ofstream outFile("output_basicColorInvert.bmp", std::ios::binary);
-//    encoder->encodeToStream(outFile);
-//    // TODO: file compare input/output
-//	
-//    tearDown();
-//}
-//
-//TEST(doubleDecorator, CodecLibrary)
-//{
-//    setUp();
-//	
-//    std::ifstream inFile("basic.bmp", std::ios::binary);
-//    CHECK_EQUAL(0, !inFile);
-//    
-//    HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
-//    HBitmapIterator iterator = decoder->createIterator();
-//    
-//    CHECK(iterator.get());
-//    CHECK_EQUAL(100, iterator->getBitmapHeight());
-//    CHECK_EQUAL(100, iterator->getBitmapWidth());
-//	
-//    HBitmapIterator colorInvertIterator(new ColorInversionDecorator(iterator));
-//    HBitmapIterator darkenColorInvertIterator(new BrightnessDecorator(colorInvertIterator, -50));
-//	
-//    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, darkenColorInvertIterator);
-//	
-//    std::ofstream outFile("output_darkInverted.bmp", std::ios::binary);
-//    encoder->encodeToStream(outFile);
-//    // TODO: file compare input/output
-//	
-//    tearDown();
-//}
+
+TEST(brightnessDecoratorIterator, CodecLibrary)
+{
+    setUp();
+	
+    std::ifstream inFile(PROJECT_PATH + "basic.bmp", std::ios::binary);
+    CHECK_EQUAL(0, !inFile);
+    
+    HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
+    HBitmapIterator iterator = decoder->createIterator();
+    
+    CHECK(iterator.get());
+    CHECK_EQUAL(100, iterator->getBitmapHeight());
+    CHECK_EQUAL(100, iterator->getBitmapWidth());
+	
+    HBitmapIterator brightnessIterator(new BrightnessDecorator(iterator, 80));
+    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, brightnessIterator);
+	
+    std::ofstream outFile(PROJECT_PATH + "output_basicBrightnessAdjusted.bmp", std::ios::binary);
+    encoder->encodeToStream(outFile);
+	
+    tearDown();
+}
+
+TEST(colorInvertDecoratorIterator, CodecLibrary)
+{
+    setUp();
+	
+    std::ifstream inFile(PROJECT_PATH + "basic.bmp", std::ios::binary);
+    CHECK_EQUAL(0, !inFile);
+    
+    HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
+    HBitmapIterator iterator = decoder->createIterator();
+    
+    CHECK(iterator.get());
+    CHECK_EQUAL(100, iterator->getBitmapHeight());
+    CHECK_EQUAL(100, iterator->getBitmapWidth());
+	
+    HBitmapIterator colorInvertIterator(new ColorInversionDecorator(iterator));
+    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, colorInvertIterator);
+	
+    std::ofstream outFile(PROJECT_PATH + "output_basicColorInvert.bmp", std::ios::binary);
+    encoder->encodeToStream(outFile);
+	
+    tearDown();
+}
+
+TEST(doubleDecorator, CodecLibrary)
+{
+    setUp();
+	
+    std::ifstream inFile(PROJECT_PATH + "basic.bmp", std::ios::binary);
+    CHECK_EQUAL(0, !inFile);
+    
+    HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
+    HBitmapIterator iterator = decoder->createIterator();
+    
+    CHECK(iterator.get());
+    CHECK_EQUAL(100, iterator->getBitmapHeight());
+    CHECK_EQUAL(100, iterator->getBitmapWidth());
+	
+    HBitmapIterator colorInvertIterator(new ColorInversionDecorator(iterator));
+    HBitmapIterator darkenColorInvertIterator(new BrightnessDecorator(colorInvertIterator, -50));
+	
+    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, darkenColorInvertIterator);
+	
+    std::ofstream outFile(PROJECT_PATH + "output_darkInverted.bmp", std::ios::binary);
+    encoder->encodeToStream(outFile);
+	
+    tearDown();
+}
