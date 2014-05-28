@@ -6,6 +6,7 @@ namespace BitmapGraphics
 {
     
     class CodecLibrary{
+	public:
 		void registerEncoder (HBitmapEncoder const& decoder);
 		void registerDecoder (HBitmapDecoder const& decoder);
 		

@@ -27,6 +27,11 @@ namespace BitmapGraphics
     WindowsBitmapHeader::WindowsBitmapHeader()
     {
     }
+	
+	WindowsBitmapHeader::WindowsBitmapHeader(const Binary::DoubleWord& _width,
+											 const Binary::DoubleWord& _height):bitmapWidth(_width), bitmapHeight(_height){
+		fileSize = rawImageByteOffset + 3 * bitmapWidth * bitmapHeight;
+	}
     
     WindowsBitmapHeader::WindowsBitmapHeader(std::istream& sourceStream)
     {

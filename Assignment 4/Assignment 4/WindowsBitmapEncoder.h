@@ -2,6 +2,7 @@
 
 #include "IBitmapEncoder.h"
 #include "WindowsBitmapCommon.h"
+#include "WindowsBitmapHeader.h"
 #include "Bitmap.h"
 
 namespace BitmapGraphics{
@@ -10,10 +11,11 @@ namespace BitmapGraphics{
 		WindowsBitmapEncoder();
 		
 		HBitmapEncoder clone(HBitmapIterator& bitmapIter);
-		void encodeToStream(std::ostream& sourceStream);
+		void encodeToStream(std::ostream& destinationStream);
 		std::string getMimeType() const;
 	private:
+		//need to verify this before writing encodeToStream;
+		HBitmapIterator myIterator;
 		WindowsBitmapEncoder(HBitmapIterator& bitmapIterator);
-		HBitmap myBitmap;
 	};
 }

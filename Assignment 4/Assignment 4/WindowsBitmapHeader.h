@@ -12,6 +12,8 @@ namespace BitmapGraphics
     {
     public:
         WindowsBitmapHeader();
+		WindowsBitmapHeader(const Binary::DoubleWord& _width,
+							const Binary::DoubleWord& _height);
         WindowsBitmapHeader(std::istream& sourceStream);
         
         void readFileHeader(std::istream& sourceStream);

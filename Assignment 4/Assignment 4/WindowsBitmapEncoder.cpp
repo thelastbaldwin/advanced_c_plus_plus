@@ -13,18 +13,41 @@ namespace BitmapGraphics {
 	
 	}
 	
-	WindowsBitmapEncoder::WindowsBitmapEncoder(HBitmapIterator& bitmapIterator){
+	WindowsBitmapEncoder::WindowsBitmapEncoder(HBitmapIterator& bitmapIterator):
+	myIterator(bitmapIterator){
 	
 	};
 	
 	HBitmapEncoder WindowsBitmapEncoder::clone(HBitmapIterator& bitmapIter){
-		WindowsBitmapEncoder encoder(bitmapIter);
+		return HBitmapEncoder(new WindowsBitmapEncoder(bitmapIter));
 	};
 	
-	void WindowsBitmapEncoder::encodeToStream(std::ostream& sourceStream){
-		//WindowsBitmapHeader.write(mySourceStream)
-		//WindowsBitmap.write(mySourceStream)
-		//Do this last part with bitmap iterators? Do the whole thing with them?
+	void WindowsBitmapEncoder::encodeToStream(std::ostream& destinationStream){
+		
+		if (myIterator == NULL)
+		{
+			throw std::runtime_error("Invalid use of prototype encoder");
+		}
+		
+		WindowsBitmapHeader header(myIterator->getBitmapWidth(), myIterator->getBitmapHeight());
+		header.write(destinationStream);
+		
+		while (!myIterator->isEndOfImage())
+		{
+			while (!myIterator->isEndOfScanLine())
+			{
+				Color color = myIterator->getColor();
+				color.write(destinationStream);
+				myIterator->nextPixel();
+			}
+			//add padding if necessary
+			for (int pad = 0; pad < getNumberOfPadBytes(myIterator->getBitmapWidth()); ++pad)
+			{
+				destinationStream.put(0x00);
+			}
+			
+			myIterator->nextScanLine();
+		}
 	};
 	
 	std::string WindowsBitmapEncoder::getMimeType() const
