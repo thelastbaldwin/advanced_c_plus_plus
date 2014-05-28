@@ -1,5 +1,5 @@
 #include "TestHarness.h"
-
+#include "Project.h"
 #include "CodecLibrary.h"
 //#include "BrightnessDecorator.h"
 //#include "ColorInversionDecorator.h"
@@ -30,140 +30,141 @@ namespace
     }
 }
 
-//TEST(invalidDecoder, CodecLibrary)
-//{
-//    HBitmapDecoder decoder(new WindowsBitmapDecoder);
-//	
-//    try
-//    {
-//        decoder->createIterator();
-//        CHECK(false);
-//    }
-//    catch (const std::exception& exc)
-//    {
-//        std::cout << exc.what() << std::endl;
-//        CHECK(true);
-//    }
-//}
-//
-//TEST(invalidEncoder, CodecLibrary)
-//{
-//    HBitmapEncoder encoder(new WindowsBitmapEncoder);
-//	
-//    try
-//    {
-//        std::ostringstream os(std::ios::binary);
-//        encoder->encodeToStream(os);
-//    }
-//    catch (const std::exception& exc)
-//    {
-//        std::cout << exc.what() << std::endl;
-//        CHECK(true);
-//    }
-//}
-//
-//TEST(createEncoderViaMimeType, CodecLibrary)
-//{
-//    setUp();
-//    
-//    Bitmap nullBitmap(0, 0);
-//    HBitmapIterator iterator = nullBitmap.createIterator();
-//    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, iterator);
-//	
-//    CHECK(dynamic_cast<WindowsBitmapEncoder*>(encoder.get()));
-//	
-//    tearDown();
-//}
-//
-//TEST(failedCreateEncoderViaMimeType, CodecLibrary)
-//{
-//    setUp();
-//    
-//    Bitmap nullBitmap(0, 0);
-//    HBitmapIterator iterator = nullBitmap.createIterator();
-//    
-//    try
-//    {
-//        HBitmapEncoder encoder = theCodecLibrary->createEncoder("image/unsupported-type", iterator);
-//        CHECK(false);
-//    }
-//    catch (const std::exception& exc)
-//    {
-//        std::cout << exc.what() << std::endl;
-//        CHECK(true);
-//    }
-//    
-//    tearDown();
-//}
-//
-//TEST(createDecoderViaMimeType, CodecLibrary)
-//{
-//    setUp();
-//	
-//    std::stringstream ss;
-//    HBitmapDecoder decoder = theCodecLibrary->createDecoder(msBmp, ss);
-//	
-//    CHECK(dynamic_cast<WindowsBitmapDecoder*>(decoder.get()));
-//	
-//    tearDown();
-//}
-//
-//TEST(createFailedDecoderViaMimeType, CodecLibrary)
-//{
-//    setUp();
-//    
-//    std::stringstream ss;
-//    
-//    try
-//    {
-//        HBitmapDecoder decoder = theCodecLibrary->createDecoder("image/unsupported-type", ss);
-//        CHECK(false);
-//    }
-//    catch (const std::exception& exc)
-//    {
-//        std::cout << exc.what() << std::endl;
-//        CHECK(true);
-//    }
-//	
-//    tearDown();
-//}
-//
-//TEST(createDecoderAutoDetermine, CodecLibrary)
-//{
-//    setUp();
-//	
-//    std::ifstream inFile("basic.bmp", std::ios::binary);
-//    CHECK_EQUAL(0, !inFile);
-//    HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
-//	
-//    CHECK(decoder.get());
-//    CHECK(dynamic_cast<WindowsBitmapDecoder*>(decoder.get()));
-//	
-//    tearDown();
-//}
-//
-//TEST(windowsBitmapDecodeEncode, CodecLibrary)
-//{
-//    setUp();
-//	
-//    std::ifstream inFile("basic.bmp", std::ios::binary);
-//    CHECK_EQUAL(0, !inFile);
-//    
-//    HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
-//    HBitmapIterator iterator = decoder->createIterator();
-//    
-//    CHECK(iterator.get());
-//    CHECK_EQUAL(100, iterator->getBitmapHeight());
-//    CHECK_EQUAL(100, iterator->getBitmapWidth());
-//	
-//    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, iterator);
-//	
-//    std::ofstream outFile("output_basicCopy.bmp", std::ios::binary);
-//    encoder->encodeToStream(outFile);
-//    // TODO: file compare input/output
-//	
-//    tearDown();
-//}
+TEST(invalidDecoder, CodecLibrary)
+{
+    HBitmapDecoder decoder(new WindowsBitmapDecoder);
+	
+    try
+    {
+        decoder->createIterator();
+        CHECK(false);
+    }
+    catch (const std::exception& exc)
+    {
+        // std::cout << exc.what() << std::endl;
+        CHECK(true);
+    }
+}
+
+TEST(invalidEncoder, CodecLibrary)
+{
+    HBitmapEncoder encoder(new WindowsBitmapEncoder);
+	
+    try
+    {
+        std::ostringstream os(std::ios::binary);
+        encoder->encodeToStream(os);
+    }
+    catch (const std::exception& exc)
+    {
+        // std::cout << exc.what() << std::endl;
+        CHECK(true);
+    }
+}
+
+TEST(createEncoderViaMimeType, CodecLibrary)
+{
+    setUp();
+    
+    Bitmap nullBitmap(0, 0);
+    HBitmapIterator iterator = nullBitmap.createIterator();
+    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, iterator);
+	
+    CHECK(dynamic_cast<WindowsBitmapEncoder*>(encoder.get()));
+	
+    tearDown();
+}
+
+TEST(failedCreateEncoderViaMimeType, CodecLibrary)
+{
+    setUp();
+    
+    Bitmap nullBitmap(0, 0);
+    HBitmapIterator iterator = nullBitmap.createIterator();
+    
+    try
+    {
+        HBitmapEncoder encoder = theCodecLibrary->createEncoder("image/unsupported-type", iterator);
+        CHECK(false);
+    }
+    catch (const std::exception& exc)
+    {
+        // std::cout << exc.what() << std::endl;
+        CHECK(true);
+    }
+    
+    tearDown();
+}
+
+TEST(createDecoderViaMimeType, CodecLibrary)
+{
+    setUp();
+	
+    std::stringstream ss;
+    HBitmapDecoder decoder = theCodecLibrary->createDecoder(msBmp, ss);
+	
+    CHECK(dynamic_cast<WindowsBitmapDecoder*>(decoder.get()));
+	
+    tearDown();
+}
+
+TEST(createFailedDecoderViaMimeType, CodecLibrary)
+{
+    setUp();
+    
+    std::stringstream ss;
+    
+    try
+    {
+        HBitmapDecoder decoder = theCodecLibrary->createDecoder("image/unsupported-type", ss);
+        CHECK(false);
+    }
+    catch (const std::exception& exc)
+    {
+        //std::cout << exc.what() << std::endl;
+        CHECK(true);
+    }
+	
+    tearDown();
+}
+
+
+TEST(createDecoderAutoDetermine, CodecLibrary)
+{
+    setUp();
+	
+    std::ifstream inFile(PROJECT_PATH + "basic.bmp", std::ios::binary);
+    CHECK(inFile.is_open());
+	HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
+	
+    CHECK(decoder.get());
+    CHECK(dynamic_cast<WindowsBitmapDecoder*>(decoder.get()));
+	
+    tearDown();
+}
+
+TEST(windowsBitmapDecodeEncode, CodecLibrary)
+{
+    setUp();
+	
+    std::ifstream inFile(PROJECT_PATH + "basic.bmp", std::ios::binary);
+    CHECK(inFile.is_open());
+    
+    HBitmapDecoder decoder = theCodecLibrary->createDecoder(inFile);
+    HBitmapIterator iterator = decoder->createIterator();
+    
+    CHECK(iterator.get());
+    CHECK_EQUAL(100, iterator->getBitmapHeight());
+    CHECK_EQUAL(100, iterator->getBitmapWidth());
+	
+    HBitmapEncoder encoder = theCodecLibrary->createEncoder(msBmp, iterator);
+	
+    std::ofstream outFile(PROJECT_PATH + "output_basicCopy.bmp", std::ios::binary);
+    encoder->encodeToStream(outFile);
+    // TODO: file compare input/output
+	
+    tearDown();
+}
 //
 //TEST(brightnessDecoratorIterator, CodecLibrary)
 //{

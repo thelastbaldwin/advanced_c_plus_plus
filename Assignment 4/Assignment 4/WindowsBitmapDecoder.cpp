@@ -19,7 +19,9 @@ namespace BitmapGraphics
     }
     
     WindowsBitmapDecoder::WindowsBitmapDecoder(std::istream& sourceStream) :
-    mySourceStream(sourceStream){}
+    mySourceStream(sourceStream)
+    {
+    }
     
     HBitmapDecoder WindowsBitmapDecoder::clone(std::istream& sourceStream)
     {
