@@ -1,11 +1,3 @@
-//
-//  Parse.cpp
-//  Assignment 1
-//
-//  Created by Steve Minor on 4/10/14.
-//  Copyright (c) 2014 Steve Minor. All rights reserved.
-//
-
 #include "Parse.h"
 
 void Parse::eat(std::stringstream& ss, std::string edibles){
