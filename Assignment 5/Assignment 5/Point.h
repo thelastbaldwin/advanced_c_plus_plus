@@ -26,6 +26,9 @@ namespace VG{
 		bool operator==(const Point& rhs);
 		bool operator!=(const Point& rhs);
 		
+		bool operator<(const Point& rhs) const;
+		bool operator>(const Point& rhs) const;
+		
 		int getX() const;
 		int getY() const;
 		

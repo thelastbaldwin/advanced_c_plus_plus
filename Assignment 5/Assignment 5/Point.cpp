@@ -31,6 +31,24 @@ bool VG::Point::operator!=(const Point& rhs){
 	return !operator==(rhs);
 };
 
+bool VG::Point::operator<(const Point& rhs) const
+{
+	if (y < rhs.y)
+	{
+		return true;
+	}
+	else if (x < rhs.x)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool VG::Point::operator>(const Point& rhs) const
+{
+	return !VG::Point::operator<(rhs);
+}
+
 int VG::Point::getX() const{ return x;}
 int VG::Point::getY() const{ return y;}
 
