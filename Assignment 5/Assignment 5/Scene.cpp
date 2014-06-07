@@ -40,12 +40,26 @@ VG::iXML& VG::Scene::fromXML(const std::shared_ptr<XMLNode> element){
 	ss >> heightAttribute;
 	height = heightAttribute;
 	
+	ss.str("");
+	ss.clear();
+	
+	ss << element->getAttribute("color");
+	if(ss.str() != ""){
+		backgroundColor = BitmapGraphics::Color::fromHex(ss.str());
+	}
+	
 	auto layerElements = element->getAllChildren();
 	
 	for (auto layer: layerElements){
 		layers.push_back(Layer(layer));
 	}	
 	return *this;
+}
+
+void VG::Scene::draw(Framework::BasicCanvas &canvas) const{
+	//go through each pixel in the canvas and set it to the background color
+	Framework::BasicCanvasBitmapIterator canvasIter(canvas);
+	//then call draw for each of the scene's layers
 }
 
 void VG::Scene::checkBounds(){

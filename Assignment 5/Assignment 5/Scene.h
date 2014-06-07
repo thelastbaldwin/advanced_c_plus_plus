@@ -14,6 +14,7 @@
 #include "Layer.h"
 #include "iXML.h"
 #include "Color.h"
+#include "BasicCanvasBitmapIterator.h"
 
 namespace VG
 {
@@ -31,8 +32,12 @@ namespace VG
 		int getWidth() const { return width; };
 		int getHeight() const { return height; };
 		
+		BitmapGraphics::Color getBackgroundColor() const { return backgroundColor; };
+		
 		std::ostream& toXML(std::ostream& os);
 		iXML& fromXML(const std::shared_ptr<XMLNode> element);
+		
+		void draw(Framework::BasicCanvas& canvas) const;
 		
 	private:
 		BitmapGraphics::Color backgroundColor;

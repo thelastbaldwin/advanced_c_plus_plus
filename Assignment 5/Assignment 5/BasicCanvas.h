@@ -1,15 +1,23 @@
 #pragma once
 
 #include <iostream>
+#include <map>
 #include "ICanvas.h"
 
 namespace Framework{
 	class BasicCanvas: public ICanvas{
 	public:
-		void setPixelColor (const VG::Point&  location, BitmapGraphics::Color const& color);
-		virtual BitmapGraphics::Color getPixelColor (const VG::Point& location) const;
-		virtual int getWidth () const;
-		virtual int getHeight () const;
-		virtual BitmapGraphics::HBitmapIterator createBitmapIterator () const;
+		BasicCanvas(const int& _width=0, const int& _height=0);
+		
+		void setPixelColor (const VG::Point& location, const BitmapGraphics::Color& color);
+		BitmapGraphics::Color getPixelColor (const VG::Point& location) const;
+		int getWidth () const;
+		int getHeight () const;
+		BitmapGraphics::HBitmapIterator createBitmapIterator () const;
+		
+	private:
+		std::map<VG::Point, BitmapGraphics::Color> myPixels;
+		int width;
+		int height;
 	};
 }

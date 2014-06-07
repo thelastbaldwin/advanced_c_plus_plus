@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Steve Minor. All rights reserved.
 //
 
-#ifndef __Assignment_1__Point__
-#define __Assignment_1__Point__
+#pragma once
 
 #include "XMLNode.h"
 #include "iXML.h"
@@ -41,5 +40,3 @@ namespace VG{
 		int x, y;
 	};
 }
-
-#endif /* defined(__Assignment_1__Point__) */

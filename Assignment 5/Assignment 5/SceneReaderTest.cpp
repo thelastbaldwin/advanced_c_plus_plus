@@ -11,7 +11,7 @@
 #define STR(a) #a
 
 const char* const TestXml = STR(
-								<Scene width="800" height="600" color="EFEFEF">
+								<Scene width="800" height="600">
 								<Layer alias="sky">
 								<PlacedGraphic x="0" y="0">
 								<VectorGraphic closed="true">
@@ -43,7 +43,7 @@ const char* const TestXml = STR(
 								</Scene>);
 
 const char* const sceneXml = STR(
-								 <Scene width="800" height="800" color="FFFFFF">
+								 <Scene width="800" height="800" color="EFEFEF">
 								 <Layer alias="bottom">
 								 <PlacedGraphic x="0" y="0">
 								 <VectorGraphic closed="true">
@@ -101,6 +101,19 @@ TEST(SceneColor, XMLStreamer){
 	std::stringstream xmlStream(TestXml);
 	
 	VG::HXMLNode root = VG::XMLStreamer::parseXml(xmlStream);
+	VG::Scene myScene(root);
+	
+	CHECK_EQUAL(0, myScene.getBackgroundColor().getRed().toInt());
+	CHECK_EQUAL(0, myScene.getBackgroundColor().getGreen().toInt());
+	CHECK_EQUAL(0, myScene.getBackgroundColor().getBlue().toInt());
+	
+	std::stringstream xmlStream2(STR(<Scene width="800" height="800" color="EFEFEF"></Scene>));
+	VG::HXMLNode root2 = VG::XMLStreamer::parseXml(xmlStream2);
+	VG::Scene myScene2(root2);
+	
+	CHECK_EQUAL(239, myScene2.getBackgroundColor().getRed().toInt());
+	CHECK_EQUAL(239, myScene2.getBackgroundColor().getGreen().toInt());
+	CHECK_EQUAL(239, myScene2.getBackgroundColor().getBlue().toInt());
 }
 
 //TEST(ReadScene, SceneReader)
