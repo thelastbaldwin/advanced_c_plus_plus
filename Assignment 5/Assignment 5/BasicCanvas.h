@@ -14,7 +14,7 @@ namespace Framework{
 		BitmapGraphics::Color getPixelColor (const VG::Point& location) const;
 		int getWidth () const;
 		int getHeight () const;
-		BitmapGraphics::HBitmapIterator createBitmapIterator();
+		BitmapGraphics::HBitmapIterator createBitmapIterator() const;
 		
 	private:
 		std::map<VG::Point, BitmapGraphics::Color> myPixels;

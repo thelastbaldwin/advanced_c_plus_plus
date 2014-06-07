@@ -9,7 +9,7 @@
 #include "BasicCanvasBitmapIterator.h"
 
 namespace Framework{
-	BasicCanvasBitmapIterator::BasicCanvasBitmapIterator(BasicCanvas& _canvas):
+	BasicCanvasBitmapIterator::BasicCanvasBitmapIterator(const BasicCanvas& _canvas):
 	canvas(_canvas),
 	width(_canvas.getWidth()),
 	height(_canvas.getHeight()),

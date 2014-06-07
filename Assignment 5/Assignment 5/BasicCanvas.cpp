@@ -35,7 +35,7 @@ namespace Framework{
 		return width;
 	}
 	
-	BitmapGraphics::HBitmapIterator BasicCanvas::createBitmapIterator(){
+	BitmapGraphics::HBitmapIterator BasicCanvas::createBitmapIterator() const{
 		return BitmapGraphics::HBitmapIterator(new BasicCanvasBitmapIterator(*this));
 	}
 }

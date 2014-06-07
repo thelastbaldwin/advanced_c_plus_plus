@@ -14,7 +14,7 @@
 namespace Framework{
 	class BasicCanvasBitmapIterator: public BitmapGraphics::IBitmapIterator{
 	public:
-		BasicCanvasBitmapIterator(BasicCanvas& _canvas);
+		BasicCanvasBitmapIterator(const BasicCanvas& _canvas);
 		
 		void nextScanLine();
 		bool isEndOfImage() const;
@@ -25,7 +25,7 @@ namespace Framework{
 		int getBitmapWidth() const;
 		int getBitmapHeight() const;
 	private:
-		BasicCanvas& canvas;
+		const BasicCanvas& canvas;
 		
 		int width;
 		int height;
