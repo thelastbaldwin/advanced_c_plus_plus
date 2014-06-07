@@ -7,6 +7,7 @@
 //
 
 #include "BasicCanvas.h"
+#include "BasicCanvasBitmapIterator.h"
 
 namespace Framework{
 	BasicCanvas::BasicCanvas(const int& _width, const int& _height):
@@ -33,5 +34,8 @@ namespace Framework{
 	int BasicCanvas::getHeight () const{
 		return width;
 	}
-	BitmapGraphics::HBitmapIterator BasicCanvas::createBitmapIterator () const{}
+	
+	BitmapGraphics::HBitmapIterator BasicCanvas::createBitmapIterator(){
+		return BitmapGraphics::HBitmapIterator(new BasicCanvasBitmapIterator(*this));
+	}
 }

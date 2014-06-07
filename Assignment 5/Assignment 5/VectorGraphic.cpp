@@ -117,6 +117,8 @@ VG::iXML& VG::VectorGraphic::fromXML(const std::shared_ptr<XMLNode> element){
 	myPath.clear();
 	auto children = element->getAllChildren();
 	for(auto iter = children.begin(); iter != children.end(); ++iter){
+		//if stroke, assign stroke
+		//else, load children
 		Point p;
 		p.fromXML(*iter);
 		addPoint(p);

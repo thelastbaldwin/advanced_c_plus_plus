@@ -11,7 +11,7 @@ namespace Framework{
 		virtual BitmapGraphics::Color getPixelColor (const VG::Point& location) const = 0;
 		virtual int getWidth () const = 0;
 		virtual int getHeight () const = 0;
-		virtual BitmapGraphics::HBitmapIterator createBitmapIterator () const = 0;
+		virtual BitmapGraphics::HBitmapIterator createBitmapIterator () = 0;
 	};
 }
 

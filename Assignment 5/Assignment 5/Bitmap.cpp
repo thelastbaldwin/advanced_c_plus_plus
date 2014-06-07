@@ -6,10 +6,7 @@ namespace BitmapGraphics
     
     Bitmap::Bitmap(int width, int height) :
     myWidth(width),
-    myHeight(height)
-    {
-        
-    }
+    myHeight(height){}
     
     int Bitmap::getWidth() const
     {

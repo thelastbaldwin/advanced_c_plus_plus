@@ -116,6 +116,15 @@ TEST(SceneColor, XMLStreamer){
 	CHECK_EQUAL(239, myScene2.getBackgroundColor().getBlue().toInt());
 }
 
+TEST(basicCanvasIteratorInit, basicCanvasBitmapIterator){
+	//testing contstructors
+	using namespace Framework;
+	
+	BasicCanvas myCanvas(20, 20);
+	BasicCanvasBitmapIterator testIter(myCanvas);
+	HBitmapIterator canvasIterator2 = myCanvas.createBitmapIterator();
+}
+
 //TEST(ReadScene, SceneReader)
 //{
 //    std::stringstream xmlStream(TestXml);

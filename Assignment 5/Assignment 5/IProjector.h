@@ -1,10 +1,11 @@
 #pragma once
+#include "ICanvas.h"
 
 namespace Framework{
 	class IProjector
 	{
 	public:
-		virtual void projectCanvas (HCanvas const& canvas) = 0;
+		virtual void projectCanvas (const ICanvas& canvas) = 0;
 	};
 }
 
