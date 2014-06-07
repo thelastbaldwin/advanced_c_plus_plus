@@ -76,7 +76,7 @@ bool VG::XMLStreamer::isSelfClosingTag(const std::string &tag){
 	return false;
 }
 
-std::shared_ptr<VG::XMLNode> VG::XMLStreamer::parseXml(std::iostream &xmlStream){
+VG::HXMLNode VG::XMLStreamer::parseXml(std::iostream &xmlStream){
 	std::stack<std::shared_ptr<XMLNode>> openTags; 
 	std::string currentElementString = XMLStreamer::getNextToken(xmlStream);
 	std::string currentTagName;

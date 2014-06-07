@@ -22,6 +22,25 @@ namespace BitmapGraphics
         
         return color;
     }
+	
+	Color Color::fromHex(const std::string& hexString){
+		if(hexString.length() != 6){
+			throw std::runtime_error("Incorrect hex color length");
+		}
+		
+		std::stringstream ss;
+		int colorValues[3];
+		
+		for (int i = 0, j=0; j < 3; i+=2, ++j) {
+			ss << hexString[i] << hexString[i+1];
+			ss >> std::hex >> colorValues[j];
+			
+			ss.str("");
+			ss.clear();
+		}
+		
+		return Color(colorValues[0], colorValues[1], colorValues[2]);
+	}
     
     void Color::write(std::ostream& destinationStream) const
     {

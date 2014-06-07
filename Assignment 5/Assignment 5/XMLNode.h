@@ -37,6 +37,8 @@ namespace VG{
 		std::map<std::string, std::string> attributes;
 		std::vector<std::shared_ptr<XMLNode>> children;
 	};
+	
+	typedef std::shared_ptr<XMLNode> HXMLNode;
 }
 
 std::ostream& operator<<(std::ostream& os, const VG::XMLNode& xmlNode);

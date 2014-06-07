@@ -19,6 +19,10 @@ namespace Binary
         {
             return sourceStream.get();
         }
+		
+		int toInt(){
+			return int(myValue);
+		}
 
     private:
         unsigned char myValue;

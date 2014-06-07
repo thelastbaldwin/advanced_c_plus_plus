@@ -13,6 +13,7 @@
 #include <stdexcept>
 #include "Layer.h"
 #include "iXML.h"
+#include "Color.h"
 
 namespace VG
 {
@@ -34,6 +35,7 @@ namespace VG
 		iXML& fromXML(const std::shared_ptr<XMLNode> element);
 		
 	private:
+		BitmapGraphics::Color backgroundColor;
 		std::list<Layer> layers;
 		void checkBounds(); //determine if layers are within scene
 		int width;

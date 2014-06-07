@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Byte.h"
+#include <sstream>
 
 namespace BitmapGraphics
 {
@@ -13,6 +14,7 @@ namespace BitmapGraphics
                        const Binary::Byte& blue = 0);
         
         static Color read(std::istream& sourceStream);
+		static Color fromHex(const std::string& hexString);
         void write(std::ostream& destinationStream) const;
         
         Binary::Byte getRed() const;
