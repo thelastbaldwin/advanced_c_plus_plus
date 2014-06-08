@@ -15,6 +15,7 @@
 #include "iXML.h"
 #include "Color.h"
 #include "BasicCanvasBitmapIterator.h"
+#include <iostream>
 
 namespace VG
 {

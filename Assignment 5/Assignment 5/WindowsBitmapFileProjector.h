@@ -6,6 +6,9 @@
 #include "WindowsBitmapCommon.h"
 #include "WindowsBitmapEncoder.h"
 #include <string>
+#include <fstream>
+
+const std::string PROJECT_PATH = "/Users/steveminor/Documents/C++/Advanced_C_Plus_Plus/Assignment 5/Assignment 5/";
 
 namespace Framework{
 	class WindowsBitmapFileProjector: public IProjector{

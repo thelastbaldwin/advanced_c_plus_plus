@@ -20,33 +20,37 @@ VG::Point& VG::Point::operator=(const Point& rhs){
 	return *this;
 };
 
-bool VG::Point::operator==(const Point& rhs){
+bool VG::Point::operator==(const Point& rhs) const{
 	if(getX() == rhs.getX() && getY() == rhs.getY()){
 		return true;
 	}
 	return false;
 };
 
-bool VG::Point::operator!=(const Point& rhs){
+bool VG::Point::operator!=(const Point& rhs) const{
 	return !operator==(rhs);
 };
+
+bool VG::Point::operator>(const Point& rhs) const
+{
+	if (y > rhs.y)
+	{
+		return true;
+	}else if(y == rhs.y && x > rhs.x){
+		return true;
+	}
+	return false;
+}
 
 bool VG::Point::operator<(const Point& rhs) const
 {
 	if (y < rhs.y)
 	{
 		return true;
-	}
-	else if (x < rhs.x)
-	{
+	}else if(y == rhs.y && x < rhs.x){
 		return true;
 	}
 	return false;
-}
-
-bool VG::Point::operator>(const Point& rhs) const
-{
-	return !VG::Point::operator<(rhs);
 }
 
 int VG::Point::getX() const{ return x;}

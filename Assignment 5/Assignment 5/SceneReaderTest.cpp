@@ -3,12 +3,35 @@
 #include "Scene.h"
 //#include "SceneReader.h"
 #include "BasicCanvas.h"
-//#include "WindowsBitmapFileProjector.h"
+#include "WindowsBitmapFileProjector.h"
 #include "WindowsBitmapDecoder.h"
 #include "WindowsBitmapEncoder.h"
+#include "CodecLibrary.h"
 #include "TestHarness.h"
 
 #define STR(a) #a
+
+namespace
+{
+    class CodecLibrarySetup
+    {
+    public:
+        CodecLibrarySetup()
+        {
+            myCodecLibrary.registerEncoder(BitmapGraphics::HBitmapEncoder(new BitmapGraphics::WindowsBitmapEncoder));
+            myCodecLibrary.registerDecoder(BitmapGraphics::HBitmapDecoder(new BitmapGraphics::WindowsBitmapDecoder));
+        }
+
+        operator BitmapGraphics::CodecLibrary&()
+        {
+            return myCodecLibrary;
+        }
+
+    private:
+		BitmapGraphics::CodecLibrary myCodecLibrary;
+
+    };
+}
 
 const char* const TestXml = STR(
 								<Scene width="800" height="600">
@@ -79,6 +102,19 @@ const char* const sceneXml = STR(
 
 using namespace BitmapGraphics;
 
+TEST(pointComparison, Point){
+	using namespace VG;
+	CHECK(Point(5, 5) < Point(6, 6));
+	CHECK(!(Point(5, 5) > Point(5, 5)));
+	CHECK(!(Point(5, 5) < Point(5, 5)));
+	CHECK(Point(6, 6) > Point(5, 5));
+	CHECK(Point(0, 180) < Point(0, 181));
+	CHECK(Point(200, 180) < Point(200, 181));
+	CHECK(Point(10, 0) > Point(5, 0));
+	CHECK(Point(4, 3) > Point(5, 0));
+	CHECK(Point(10, 10) > Point(10, 9));
+}
+
 TEST(RGBfromHex, Color){
 	std::string testColor("FF0000");
 	
@@ -123,6 +159,44 @@ TEST(basicCanvasIteratorInit, basicCanvasBitmapIterator){
 	BasicCanvas myCanvas(20, 20);
 	BasicCanvasBitmapIterator testIter(myCanvas);
 	HBitmapIterator canvasIterator2 = myCanvas.createBitmapIterator();
+}
+
+TEST(blueBitmapTest, scene){
+	using namespace Framework;
+	using namespace VG;
+	
+	std::stringstream xmlStream(STR(<Scene width="200" height="200" color="0000FF"></Scene>));
+	VG::HXMLNode root = VG::XMLStreamer::parseXml(xmlStream);
+	VG::Scene myScene(root);
+	
+	BasicCanvas myCanvas(myScene.getWidth(), myScene.getHeight());
+	
+	myScene.draw(myCanvas);
+	auto pixelData = myCanvas.getPixelMap();
+	std::cout << pixelData.size() << std::endl;
+	
+	VG::Point myPoint(1, 20);
+	for(auto pixelPair : pixelData){
+		if(pixelPair.first == myPoint){
+			std::cout << "brute force find successful" << std::endl;
+			std::cout << pixelPair.second.getBlue().toInt() << std::endl;
+//			std::cout << pixelPair.first.getX() << ", " << pixelPair.first.getY() << std::endl;
+		}
+	}
+	CHECK(pixelData.find(myPoint) != pixelData.end());
+	
+//	for (int row = 0; row < myScene.getHeight(); ++row) {
+//		for (int column = 0; column < myScene.getWidth(); ++column) {
+//			BitmapGraphics::Color currentColor = myCanvas.getPixelColor(VG::Point(column, row));
+//			std::cout << currentColor.getRed().toInt() << ","
+//			<< currentColor.getGreen().toInt() << ","
+//			<< currentColor.getBlue().toInt() << std::endl;
+//			CHECK_EQUAL(0, currentColor.getRed().toInt());
+//			CHECK_EQUAL(0, currentColor.getGreen().toInt());
+//			CHECK_EQUAL(255, currentColor.getBlue().toInt());
+//		}
+//	}
+	
 }
 
 //TEST(ReadScene, SceneReader)
@@ -190,29 +264,7 @@ TEST(basicCanvasIteratorInit, basicCanvasBitmapIterator){
 //    CHECK_EQUAL(2, iLayer);
 //}
 //
-////////////////////
-//
-//namespace
-//{
-//    class CodecLibrarySetup
-//    {
-//    public:
-//        CodecLibrarySetup()
-//        {
-//            myCodecLibrary.registerEncoder(HBitmapEncoder(new WindowsBitmapEncoder));
-//            myCodecLibrary.registerDecoder(HBitmapDecoder(new WindowsBitmapDecoder));
-//        }
-//        
-//        operator CodecLibrary&()
-//        {
-//            return myCodecLibrary;
-//        }
-//        
-//    private:
-//        CodecLibrary myCodecLibrary;
-//		
-//    };
-//}
+
 //
 //TEST(toBitmap, SceneReader)
 //{

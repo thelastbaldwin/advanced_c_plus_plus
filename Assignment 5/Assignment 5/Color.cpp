@@ -5,7 +5,7 @@ namespace BitmapGraphics
     
     Color::Color(const Binary::Byte& red,
                  const Binary::Byte& green,
-                 const Binary::Byte& blue) :
+                 const Binary::Byte& blue):
     myRed(red),
     myGreen(green),
     myBlue(blue)

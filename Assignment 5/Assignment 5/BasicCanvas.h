@@ -16,6 +16,8 @@ namespace Framework{
 		int getHeight () const;
 		BitmapGraphics::HBitmapIterator createBitmapIterator() const;
 		
+		const std::map<VG::Point, BitmapGraphics::Color>& getPixelMap() const;
+		
 	private:
 		std::map<VG::Point, BitmapGraphics::Color> myPixels;
 		int width;

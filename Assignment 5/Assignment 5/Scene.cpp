@@ -58,8 +58,16 @@ VG::iXML& VG::Scene::fromXML(const std::shared_ptr<XMLNode> element){
 
 void VG::Scene::draw(Framework::BasicCanvas &canvas) const{
 	//go through each pixel in the canvas and set it to the background color
-	Framework::BasicCanvasBitmapIterator canvasIter(canvas);
-	//then call draw for each of the scene's layers
+	int canvasWidth = canvas.getWidth(),
+		canvasHeight = canvas.getHeight();
+	
+	std::cout << "setting colors" << std::endl;
+	
+	for (int row = 0; row < canvasHeight; ++row) {
+		for (int column = 0; column < canvasWidth; ++column) {
+			canvas.setPixelColor(VG::Point(column, row), backgroundColor);
+		}
+	}
 }
 
 void VG::Scene::checkBounds(){

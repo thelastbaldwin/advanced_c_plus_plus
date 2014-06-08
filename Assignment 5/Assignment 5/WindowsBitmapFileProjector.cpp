@@ -16,6 +16,11 @@ namespace Framework{
 	void WindowsBitmapFileProjector::projectCanvas(const Framework::ICanvas &canvas) {
 		//create an encoder from the codecLibrary
 		auto canvasIter = canvas.createBitmapIterator();
-		codecLibrary.createEncoder(BitmapGraphics::WindowsBitmapMimeType, canvasIter);
+		BitmapGraphics::HBitmapEncoder encoder = codecLibrary.createEncoder(BitmapGraphics::WindowsBitmapMimeType, canvasIter);
+		
+		//create a new empty file for writing to
+		std::ofstream bitmapFile(PROJECT_PATH + filename, std::ios::binary);
+		encoder->encodeToStream(bitmapFile);
+		bitmapFile.close();
 	}
 }

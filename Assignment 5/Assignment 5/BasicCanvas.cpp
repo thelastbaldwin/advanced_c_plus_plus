@@ -14,17 +14,21 @@ namespace Framework{
 		width(_width),
 		height(_height){};
 	
-	void BasicCanvas::setPixelColor (const VG::Point& location, const BitmapGraphics::Color& color){
-		myPixels.insert(std::pair<VG::Point, BitmapGraphics::Color>(location, color));
+	void BasicCanvas::setPixelColor (const VG::Point& location, const BitmapGraphics::Color& color){		
+		auto success = myPixels.insert(std::pair<VG::Point, BitmapGraphics::Color>(location, color));
+		if(!success.second){
+			std::cout << "unable to save " << location.getX() << ", " <<location.getY() << std::endl;
+		}
 	}
 	
 	BitmapGraphics::Color BasicCanvas::getPixelColor (const VG::Point& location) const{
+		std::cout << location.getX() << "," << location.getY() << " : ";
 		auto foundPoint = myPixels.find(location);
 		if (foundPoint != myPixels.end())
 		{
 			return foundPoint->second;
 		}
-		//should never reach this condition, the scene will fill this with a background color of black
+		//should only reach this if point is not found
 		return BitmapGraphics::Color();
 	};
 	
@@ -37,5 +41,9 @@ namespace Framework{
 	
 	BitmapGraphics::HBitmapIterator BasicCanvas::createBitmapIterator() const{
 		return BitmapGraphics::HBitmapIterator(new BasicCanvasBitmapIterator(*this));
+	}
+	
+	const std::map<VG::Point, BitmapGraphics::Color>& BasicCanvas::getPixelMap() const{
+		return myPixels;
 	}
 }
