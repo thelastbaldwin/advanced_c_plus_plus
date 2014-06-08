@@ -22,7 +22,6 @@ namespace Framework{
 	}
 	
 	BitmapGraphics::Color BasicCanvas::getPixelColor (const VG::Point& location) const{
-		std::cout << location.getX() << "," << location.getY() << " : ";
 		auto foundPoint = myPixels.find(location);
 		if (foundPoint != myPixels.end())
 		{

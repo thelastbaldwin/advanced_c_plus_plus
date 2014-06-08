@@ -173,30 +173,31 @@ TEST(blueBitmapTest, scene){
 	
 	myScene.draw(myCanvas);
 	auto pixelData = myCanvas.getPixelMap();
-	std::cout << pixelData.size() << std::endl;
+	CHECK_EQUAL(40000, pixelData.size());
 	
 	VG::Point myPoint(1, 20);
 	for(auto pixelPair : pixelData){
 		if(pixelPair.first == myPoint){
-			std::cout << "brute force find successful" << std::endl;
-			std::cout << pixelPair.second.getBlue().toInt() << std::endl;
-//			std::cout << pixelPair.first.getX() << ", " << pixelPair.first.getY() << std::endl;
+			CHECK(true);
+			break;
 		}
 	}
 	CHECK(pixelData.find(myPoint) != pixelData.end());
 	
-//	for (int row = 0; row < myScene.getHeight(); ++row) {
-//		for (int column = 0; column < myScene.getWidth(); ++column) {
-//			BitmapGraphics::Color currentColor = myCanvas.getPixelColor(VG::Point(column, row));
-//			std::cout << currentColor.getRed().toInt() << ","
-//			<< currentColor.getGreen().toInt() << ","
-//			<< currentColor.getBlue().toInt() << std::endl;
-//			CHECK_EQUAL(0, currentColor.getRed().toInt());
-//			CHECK_EQUAL(0, currentColor.getGreen().toInt());
-//			CHECK_EQUAL(255, currentColor.getBlue().toInt());
-//		}
-//	}
+	for (int row = 0; row < myScene.getHeight(); ++row) {
+		for (int column = 0; column < myScene.getWidth(); ++column) {
+			BitmapGraphics::Color currentColor = myCanvas.getPixelColor(VG::Point(column, row));
+			CHECK_EQUAL(0, currentColor.getRed().toInt());
+			CHECK_EQUAL(0, currentColor.getGreen().toInt());
+			CHECK_EQUAL(255, currentColor.getBlue().toInt());
+		}
+	}
 	
+	CodecLibrary codecLibrary = CodecLibrarySetup();
+	HBitmapIterator canvasIterator = myCanvas.createBitmapIterator();
+	
+	WindowsBitmapFileProjector myProjector("blue.bmp", codecLibrary);
+	myProjector.projectCanvas(myCanvas);
 }
 
 //TEST(ReadScene, SceneReader)

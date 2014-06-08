@@ -21,7 +21,7 @@ namespace Framework{
 	}
 	
 	bool BasicCanvasBitmapIterator::isEndOfImage() const{
-		return yIndex >= height && xIndex > width;
+		return yIndex >= height && xIndex >= width;
 	}
 	
 	void BasicCanvasBitmapIterator::nextPixel(){
@@ -39,7 +39,7 @@ namespace Framework{
 	}
 	
 	bool BasicCanvasBitmapIterator::isEndOfScanLine() const{
-		return xIndex == width;
+		return xIndex == width - 1;
 	}
 	
 	BitmapGraphics::Color BasicCanvasBitmapIterator::getColor() const{

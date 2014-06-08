@@ -61,8 +61,6 @@ void VG::Scene::draw(Framework::BasicCanvas &canvas) const{
 	int canvasWidth = canvas.getWidth(),
 		canvasHeight = canvas.getHeight();
 	
-	std::cout << "setting colors" << std::endl;
-	
 	for (int row = 0; row < canvasHeight; ++row) {
 		for (int column = 0; column < canvasWidth; ++column) {
 			canvas.setPixelColor(VG::Point(column, row), backgroundColor);
