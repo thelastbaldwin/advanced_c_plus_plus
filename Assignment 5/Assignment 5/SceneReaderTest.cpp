@@ -158,7 +158,10 @@ TEST(basicCanvasIteratorInit, basicCanvasBitmapIterator){
 	
 	BasicCanvas myCanvas(20, 20);
 	BasicCanvasBitmapIterator testIter(myCanvas);
-	HBitmapIterator canvasIterator2 = myCanvas.createBitmapIterator();
+	HBitmapIterator canvasIterator = myCanvas.createBitmapIterator();
+	
+	CHECK_EQUAL(20, canvasIterator->getBitmapHeight());
+	CHECK_EQUAL(20, canvasIterator->getBitmapWidth());
 }
 
 TEST(blueBitmapTest, scene){
@@ -196,8 +199,65 @@ TEST(blueBitmapTest, scene){
 	CodecLibrary codecLibrary = CodecLibrarySetup();
 	HBitmapIterator canvasIterator = myCanvas.createBitmapIterator();
 	
-	WindowsBitmapFileProjector myProjector("blue.bmp", codecLibrary);
-	myProjector.projectCanvas(myCanvas);
+	//write to file with projector
+//	WindowsBitmapFileProjector myProjector("blue.bmp", codecLibrary);
+//	myProjector.projectCanvas(myCanvas);
+	
+	//write to file manually with encoder
+	std::ofstream outputStream(PROJECT_PATH + "blue.bmp", std::ios::binary);
+	HBitmapEncoder encoder = codecLibrary.createEncoder(BitmapGraphics::WindowsBitmapMimeType, canvasIterator);
+    encoder->encodeToStream(outputStream);
+    outputStream.close();
+}
+
+TEST(BitmapReadWrite, Bitmap)
+{
+    // Read in the bitmap
+    
+    std::ifstream bitmapStream(PROJECT_PATH + "blue.bmp", std::ios::binary);
+    CHECK(bitmapStream.is_open());
+    
+    WindowsBitmapDecoder bmDecoder;
+	
+    HBitmapDecoder decoder = bmDecoder.clone(bitmapStream);
+    HBitmapIterator bitmapIter = decoder->createIterator();
+    
+    // Write out the bitmap to a different file with its write() method
+    
+    std::ofstream outputStream(PROJECT_PATH + "blue01.bmp", std::ios::binary);
+    CHECK(outputStream.is_open());
+    
+    WindowsBitmapEncoder bmEncoder;
+	
+	HBitmapEncoder encoder = bmEncoder.clone(bitmapIter);
+    encoder->encodeToStream(outputStream);
+    outputStream.close();
+}
+
+TEST(BitmapReadWriteCodecLibrary, Bitmap)
+{
+	
+	CodecLibrary theCodecLibrary = CodecLibrarySetup();
+    // Read in the bitmap
+    
+    std::ifstream bitmapStream(PROJECT_PATH + "blue.bmp", std::ios::binary);
+    CHECK(bitmapStream.is_open());
+    
+    WindowsBitmapDecoder bmDecoder;
+	
+    HBitmapDecoder decoder = bmDecoder.clone(bitmapStream);
+    HBitmapIterator bitmapIter = decoder->createIterator();
+    
+    // Write out the bitmap to a different file with its write() method
+    
+    std::ofstream outputStream(PROJECT_PATH + "blue02.bmp", std::ios::binary);
+    CHECK(outputStream.is_open());
+    
+    WindowsBitmapEncoder bmEncoder;
+	
+	HBitmapEncoder encoder = theCodecLibrary.createEncoder(BitmapGraphics::WindowsBitmapMimeType, bitmapIter);
+    encoder->encodeToStream(outputStream);
+    outputStream.close();
 }
 
 //TEST(ReadScene, SceneReader)

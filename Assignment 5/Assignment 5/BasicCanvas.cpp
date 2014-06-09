@@ -27,7 +27,7 @@ namespace Framework{
 		{
 			return foundPoint->second;
 		}
-		//should only reach this if point is not found
+		//if point is not found
 		return BitmapGraphics::Color();
 	};
 	

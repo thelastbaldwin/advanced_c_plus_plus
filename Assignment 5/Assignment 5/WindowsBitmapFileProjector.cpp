@@ -15,7 +15,7 @@ namespace Framework{
 	
 	void WindowsBitmapFileProjector::projectCanvas(const Framework::ICanvas &canvas) {
 		//create an encoder from the codecLibrary
-		auto canvasIter = canvas.createBitmapIterator();
+		BitmapGraphics::HBitmapIterator canvasIter = canvas.createBitmapIterator();
 		BitmapGraphics::HBitmapEncoder encoder = codecLibrary.createEncoder(BitmapGraphics::WindowsBitmapMimeType, canvasIter);
 		
 		//create a new empty file for writing to

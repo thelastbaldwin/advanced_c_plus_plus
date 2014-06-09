@@ -14,36 +14,37 @@ namespace Framework{
 	width(_canvas.getWidth()),
 	height(_canvas.getHeight()),
 	xIndex(0),
-	yIndex(0){}
+	yIndex(0),
+	canvasIter(canvas.getPixelMap().cbegin()){}
 	
 	void BasicCanvasBitmapIterator::nextScanLine(){
-		++yIndex;
+		if(!isEndOfImage()){
+			++yIndex;
+			xIndex = 0;
+		}		
 	}
 	
 	bool BasicCanvasBitmapIterator::isEndOfImage() const{
-		return yIndex >= height && xIndex >= width;
+		return canvasIter == canvas.getPixelMap().cend();
 	}
 	
 	void BasicCanvasBitmapIterator::nextPixel(){
-		//if not at end of scanline, just go to the next
-		if (!isEndOfScanLine()) {
+		if(!isEndOfImage()){
+			++canvasIter;
 			++xIndex;
-		//if at the end of scanline, go to the next row
-		//if not at last row
-		}else{
-			if(yIndex != height){
-				xIndex = 0;
-				++yIndex;
-			}			
-		}
+		}		
 	}
 	
 	bool BasicCanvasBitmapIterator::isEndOfScanLine() const{
-		return xIndex == width - 1;
+		return xIndex == getBitmapWidth();
 	}
 	
 	BitmapGraphics::Color BasicCanvasBitmapIterator::getColor() const{
-		return canvas.getPixelColor(VG::Point(xIndex, yIndex));
+		if(isEndOfImage()){
+			std::cout << xIndex << ", " << yIndex << std::endl;
+			throw std::runtime_error("bad iterator");
+		}
+		return canvasIter->second;
 	}
 	
 	int BasicCanvasBitmapIterator::getBitmapWidth() const{

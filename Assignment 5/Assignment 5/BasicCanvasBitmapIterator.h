@@ -26,6 +26,7 @@ namespace Framework{
 		int getBitmapHeight() const;
 	private:
 		const BasicCanvas& canvas;
+		std::map<VG::Point, BitmapGraphics::Color>::const_iterator canvasIter;
 		
 		int width;
 		int height;
